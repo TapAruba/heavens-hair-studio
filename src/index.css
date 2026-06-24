@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --plum: #6c445c;
+    --wine: #4a2c3d;
+    --lilac: #cda8d0;
+    --blush: #e9d6e8;
+    --porcelain: #faf6f8;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-porcelain text-ink font-sans;
+    background-color: #faf6f8;
+  }
+
+  ::selection {
+    background: var(--lilac);
+    color: #fff;
+  }
+
+  /* Refined scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f3e7f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #c9a6cc;
+    border-radius: 999px;
+    border: 2px solid #f3e7f1;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--plum);
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-sans text-[0.7rem] font-semibold uppercase tracking-luxe text-plum/70;
+  }
+
+  .display-title {
+    @apply font-display font-medium leading-[1.05] tracking-[-0.01em];
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-sans text-sm font-semibold
+      transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2
+      focus-visible:ring-lilac focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain;
+  }
+
+  .btn-primary {
+    @apply btn bg-plum-grad px-7 py-3.5 text-porcelain shadow-soft hover:-translate-y-0.5 hover:shadow-lift;
+  }
+
+  .btn-secondary {
+    @apply btn border border-plum/25 bg-white/60 px-7 py-3.5 text-plum backdrop-blur
+      hover:border-plum/50 hover:bg-white hover:-translate-y-0.5 hover:shadow-soft;
+  }
+
+  .btn-ghost {
+    @apply btn px-5 py-2.5 text-plum/80 hover:text-plum;
+  }
+
+  .glass {
+    @apply border border-white/60 bg-white/70 backdrop-blur-xl;
+  }
+
+  .card {
+    @apply rounded-4xl border border-plum/10 bg-white shadow-card transition-all duration-500;
+  }
+
+  .input {
+    @apply w-full rounded-2xl border border-plum/15 bg-porcelain/60 px-4 py-3.5 font-sans text-sm text-ink
+      outline-none transition-all placeholder:text-plum/30
+      focus:border-lilac focus:bg-white focus:ring-4 focus:ring-lilac/20;
+  }
+
+  .container-luxe {
+    @apply mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-12;
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-plum
+      after:transition-all after:duration-300 hover:after:w-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Preppy textures drawn from the brand */
+  .tx-pinstripe {
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(108, 68, 92, 0.06) 0,
+      rgba(108, 68, 92, 0.06) 1px,
+      transparent 1px,
+      transparent 11px
+    );
+  }
+  .tx-dotgrid {
+    background-image: radial-gradient(rgba(108, 68, 92, 0.12) 1px, transparent 1.4px);
+    background-size: 22px 22px;
+  }
+  .tx-herringbone {
+    background-color: #faf6f8;
+    background-image: linear-gradient(135deg, rgba(205, 168, 208, 0.18) 25%, transparent 25%),
+      linear-gradient(225deg, rgba(205, 168, 208, 0.18) 25%, transparent 25%);
+    background-size: 18px 18px;
+  }
+
+  .shimmer-text {
+    background: linear-gradient(110deg, #6c445c 30%, #cda8d0 50%, #6c445c 70%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 6s linear infinite;
+  }
+
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, #000 80%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 80%, transparent 100%);
+  }
+}
