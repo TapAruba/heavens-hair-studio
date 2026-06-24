@@ -112,7 +112,7 @@ export default function Hero() {
             {/* arched salon image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 28 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1, delay: 0.2, ease }}
-              className="group relative aspect-[1/1.06] w-full overflow-hidden rounded-[10rem_10rem_2.2rem_2.2rem] border-[6px] border-white bg-white shadow-lift ring-1 ring-plum/10"
+              className="group relative aspect-[1/1.28] w-full overflow-hidden rounded-[10rem_10rem_2.2rem_2.2rem] border-[6px] border-white bg-white shadow-lift ring-1 ring-plum/10"
             >
               <img src={SALON} onError={onErr(SALON_FB)} alt="Inside Heaven's Hair Studio"
                 className="h-full w-full scale-105 object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110" />
@@ -123,7 +123,7 @@ export default function Hero() {
             <motion.figure
               initial={{ opacity: 0, y: -20, rotate: -8 }} animate={{ opacity: 1, y: [0, -7, 0], rotate: -8 }}
               transition={{ opacity: { duration: 0.8, delay: 0.6 }, rotate: { duration: 0.8, delay: 0.6 }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 } }}
-              className="absolute -top-[4%] -right-[100px] z-30 w-[208px]"
+              className="absolute top-[6%] -right-[100px] z-30 w-[208px]"
             >
               <img src="/hero/paperclip.png" alt="" className="absolute -top-9 left-1/2 z-10 w-[46px] -translate-x-1/2 rotate-[-4deg] drop-shadow-[0_7px_8px_rgba(74,44,61,0.32)]" />
               <div className="rounded-[0.6rem] border border-plum/5 bg-white p-2.5 pb-6 shadow-card">
@@ -136,7 +136,7 @@ export default function Hero() {
             {/* service card — directly UNDER the polaroid, also straddling the arch's right edge */}
             <motion.div
               initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.7, ease }}
-              className="absolute -right-[116px] top-[58%] z-10 w-[248px] rounded-2xl border border-plum/10 bg-white/95 p-4 shadow-card backdrop-blur"
+              className="absolute -right-[116px] top-[44%] z-10 w-[248px] rounded-2xl border border-plum/10 bg-white/95 p-4 shadow-card backdrop-blur"
             >
               <div className="flex items-center gap-3">
                 <img src="/brand/logo.png" alt="" className="h-11 w-11 rounded-full object-cover ring-1 ring-plum/10" />
@@ -156,7 +156,7 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.5, rotate: -24 }} animate={{ opacity: 1, scale: 1, rotate: -10 }}
               transition={{ duration: 0.8, delay: 0.95, ease }}
               src="/hero/wax-seal.png" alt="Heaven's Hair Studio wax seal"
-              className="absolute -right-[42px] top-[53%] z-40 -mt-[42px] w-[84px] drop-shadow-[0_10px_16px_rgba(74,44,61,0.42)]"
+              className="absolute -right-[42px] top-[41%] z-40 -mt-[42px] w-[84px] drop-shadow-[0_10px_16px_rgba(74,44,61,0.42)]"
             />
           </div>
         </div>
