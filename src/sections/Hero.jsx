@@ -123,7 +123,7 @@ export default function Hero() {
             transition={{ opacity: { duration: 0.8, delay: 0.6 }, rotate: { duration: 0.8, delay: 0.6 }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 } }}
             className="absolute -right-3 -top-6 w-40 sm:-right-8 sm:w-44"
           >
-            <Paperclip />
+            <img src="/hero/paperclip.png" alt="" className="absolute -top-9 left-1/2 z-10 w-11 -translate-x-1/2 rotate-[9deg] drop-shadow-[0_7px_8px_rgba(74,44,61,0.32)]" />
             <div className="rounded-[1.1rem] border border-plum/5 bg-white p-2.5 pb-7 shadow-card">
               <div className="overflow-hidden rounded-[0.7rem]">
                 <img src={POLA} onError={onErr(POLA_FB)} alt="Hair inspiration" className="aspect-[4/5] w-full object-cover" />
@@ -154,9 +154,9 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.6, rotate: -20 }} animate={{ opacity: 1, scale: 1, rotate: -8 }}
             transition={{ duration: 0.8, delay: 0.95, ease }}
-            className="absolute bottom-[6.5rem] left-[3.2rem] z-20 drop-shadow-[0_8px_16px_rgba(74,44,61,0.35)] sm:left-16"
+            className="absolute bottom-[6.5rem] left-[3.2rem] z-20 drop-shadow-[0_10px_18px_rgba(74,44,61,0.35)] sm:left-16"
           >
-            <WaxSeal />
+            <img src="/hero/wax-seal.png" alt="Heaven's Hair Studio wax seal" className="w-[6.6rem]" />
           </motion.div>
         </div>
       </div>
@@ -181,53 +181,6 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
-}
-
-/* ── gold wax seal with embossed HH monogram ── */
-function WaxSeal() {
-  const beads = Array.from({ length: 24 }, (_, i) => { const a = (i / 24) * Math.PI * 2; return [50 + Math.cos(a) * 45.5, 50 + Math.sin(a) * 45.5] })
-  return (
-    <svg width="92" height="92" viewBox="0 0 100 100" aria-hidden>
-      <defs>
-        <radialGradient id="goldFace" cx="38%" cy="33%" r="75%">
-          <stop offset="0%" stopColor="#F7E7B0" /><stop offset="42%" stopColor="#E2BE6A" />
-          <stop offset="78%" stopColor="#C49A41" /><stop offset="100%" stopColor="#9A7227" />
-        </radialGradient>
-        <radialGradient id="goldBead" cx="35%" cy="30%" r="80%">
-          <stop offset="0%" stopColor="#F9EDC2" /><stop offset="100%" stopColor="#B08833" />
-        </radialGradient>
-        <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#fff" stopOpacity="0.55" /><stop offset="45%" stopColor="#fff" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      {beads.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="4.4" fill="url(#goldBead)" />)}
-      <circle cx="50" cy="50" r="42" fill="url(#goldFace)" />
-      <circle cx="50" cy="50" r="42" fill="url(#sheen)" />
-      <circle cx="50" cy="50" r="35" fill="none" stroke="#8A6320" strokeWidth="1" strokeOpacity="0.55" />
-      <circle cx="50" cy="50" r="32.5" fill="none" stroke="#FBEFC8" strokeWidth="0.8" strokeOpacity="0.5" />
-      <text x="50" y="58.5" textAnchor="middle" fontFamily="'Cormorant Garamond', Georgia, serif" fontWeight="600" fontSize="30"
-        fill="#7A551B" style={{ letterSpacing: '-2px' }}>HH</text>
-      <text x="50" y="58.1" textAnchor="middle" fontFamily="'Cormorant Garamond', Georgia, serif" fontWeight="600" fontSize="30"
-        fill="#A87E2E" fillOpacity="0.6" style={{ letterSpacing: '-2px' }}>HH</text>
-      <ellipse cx="38" cy="34" rx="15" ry="9" fill="#fff" opacity="0.22" transform="rotate(-25 38 34)" />
-    </svg>
-  )
-}
-
-/* ── realistic metallic paperclip ── */
-function Paperclip() {
-  return (
-    <svg width="46" height="60" viewBox="0 0 46 60" className="absolute -top-7 left-1/2 z-10 -translate-x-1/2 rotate-[8deg] drop-shadow-[0_4px_5px_rgba(74,44,61,0.3)]" aria-hidden>
-      <defs>
-        <linearGradient id="clip" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#9A7227" /><stop offset="28%" stopColor="#F4E2A4" />
-          <stop offset="55%" stopColor="#C9A24B" /><stop offset="80%" stopColor="#F7EBC2" /><stop offset="100%" stopColor="#8A6320" />
-        </linearGradient>
-      </defs>
-      <path d="M15 50 V18 a8 8 0 0 1 16 0 V44 a4.5 4.5 0 0 1-9 0 V22"
-        fill="none" stroke="url(#clip)" strokeWidth="4.2" strokeLinecap="round" />
-    </svg>
   )
 }
 
