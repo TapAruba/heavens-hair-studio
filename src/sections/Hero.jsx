@@ -8,7 +8,7 @@ const ease = [0.16, 1, 0.3, 1]
 const SALON = '/hero/salon-arch.png'
 const SALON_FB = 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80'
 const POLA = '/hero/polaroid-hair.png'
-const POLA_FB = 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=600&q=80'
+const POLA_FB = 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=600&q=80'
 const onErr = (fb) => (e) => { if (e.currentTarget.src !== fb) e.currentTarget.src = fb }
 
 const features = [
@@ -121,7 +121,7 @@ export default function Hero() {
           <motion.figure
             initial={{ opacity: 0, y: -20, rotate: 0 }} animate={{ opacity: 1, y: [0, -8, 0], rotate: 5 }}
             transition={{ opacity: { duration: 0.8, delay: 0.6 }, rotate: { duration: 0.8, delay: 0.6 }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 } }}
-            className="absolute -right-3 -top-6 w-40 sm:-right-8 sm:w-44"
+            className="absolute -top-7 right-2 z-10 w-44 sm:w-48"
           >
             <img src="/hero/paperclip.png" alt="" className="absolute -top-9 left-1/2 z-10 w-11 -translate-x-1/2 rotate-[9deg] drop-shadow-[0_7px_8px_rgba(74,44,61,0.32)]" />
             <div className="rounded-[1.1rem] border border-plum/5 bg-white p-2.5 pb-7 shadow-card">
@@ -135,8 +135,15 @@ export default function Hero() {
           {/* floating service card */}
           <motion.div
             initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.7, ease }}
-            className="absolute -bottom-7 -left-3 w-[15.5rem] rounded-3xl border border-plum/10 bg-white/95 p-4 shadow-card backdrop-blur sm:-left-8"
+            className="absolute right-1 top-[9.5rem] z-10 w-[15.5rem] rounded-3xl border border-plum/10 bg-white/95 p-4 shadow-card backdrop-blur"
           >
+            {/* gold wax seal — sits on the card's top-left, overlapping the polaroid above */}
+            <motion.img
+              initial={{ opacity: 0, scale: 0.6, rotate: -22 }} animate={{ opacity: 1, scale: 1, rotate: -9 }}
+              transition={{ duration: 0.8, delay: 0.95, ease }}
+              src="/hero/wax-seal.png" alt="Heaven's Hair Studio wax seal"
+              className="absolute -left-11 -top-12 z-20 w-[6.7rem] drop-shadow-[0_10px_18px_rgba(74,44,61,0.35)]"
+            />
             <div className="flex items-center gap-3">
               <img src="/brand/logo.png" alt="" className="h-10 w-10 rounded-full object-cover ring-1 ring-plum/10" />
               <div>
@@ -148,15 +155,6 @@ export default function Hero() {
               <span className="text-[0.62rem] font-semibold uppercase tracking-luxe text-plum/55">Starting at</span>
               <span className="font-display text-lg font-semibold text-plum">from <span className="text-wine">$165</span></span>
             </div>
-          </motion.div>
-
-          {/* gold wax seal — overlaps polaroid + card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.6, rotate: -20 }} animate={{ opacity: 1, scale: 1, rotate: -8 }}
-            transition={{ duration: 0.8, delay: 0.95, ease }}
-            className="absolute bottom-[6.5rem] left-[3.2rem] z-20 drop-shadow-[0_10px_18px_rgba(74,44,61,0.35)] sm:left-16"
-          >
-            <img src="/hero/wax-seal.png" alt="Heaven's Hair Studio wax seal" className="w-[6.6rem]" />
           </motion.div>
         </div>
       </div>
