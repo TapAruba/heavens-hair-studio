@@ -1,164 +1,264 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, Star, Sparkles } from 'lucide-react'
-import { studio } from '../data/content'
+import { ArrowRight, Star, Sparkles, Crown, Heart, CalendarHeart } from 'lucide-react'
 
 const ease = [0.16, 1, 0.3, 1]
+
+/* local-first images: drop AI renders into /public/hero/ and they auto-replace the fallbacks */
+const SALON = '/hero/salon-arch.png'
+const SALON_FB = 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80'
+const POLA = '/hero/polaroid-hair.png'
+const POLA_FB = 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=600&q=80'
+const onErr = (fb) => (e) => { if (e.currentTarget.src !== fb) e.currentTarget.src = fb }
+
+const features = [
+  { icon: Crown, title: 'Luxury Experience', desc: 'Premium service in a relaxing and elegant environment.' },
+  { icon: Heart, title: 'Personalized Care', desc: 'Tailored consultations for results that feel like you.' },
+  { icon: Sparkles, title: 'Expert Stylists', desc: 'Highly trained professionals passionate about perfection.' },
+  { icon: CalendarHeart, title: 'Easy Booking', desc: 'Effortless online booking whenever you are ready.' },
+]
+
+const avatars = [
+  'photo-1544005313-94ddf0286df2', 'photo-1502823403499-6ccfcf4fb453',
+  'photo-1534528741775-53994a69daeb', 'photo-1487412720507-e7ab37603c6f',
+]
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-blush-grad pt-[72px]">
-      {/* ambient decoration */}
-      <div className="pointer-events-none absolute inset-0 tx-dotgrid opacity-50" />
-      <div className="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-lilac/30 blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-blush/70 blur-3xl" />
+      {/* ── ambient + decorative ── */}
+      <div className="pointer-events-none absolute inset-0 tx-dotgrid opacity-40" />
+      <div className="pointer-events-none absolute -left-40 top-24 h-[28rem] w-[28rem] rounded-full bg-lilac/25 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 top-40 h-80 w-80 rounded-full bg-blush/60 blur-3xl" />
+      <Decor />
 
-      <div className="container-luxe relative grid items-center gap-14 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
-        {/* Copy */}
+      <div className="container-luxe relative grid items-center gap-12 py-14 lg:grid-cols-[1.04fr_0.96fr] lg:gap-8 lg:py-20">
+        {/* ───────── LEFT: copy ───────── */}
         <div className="relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease }}
+          <motion.span
+            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease }}
+            className="inline-flex items-center gap-2 rounded-full border border-plum/15 bg-white/70 px-4 py-1.5 text-[0.68rem] font-semibold uppercase tracking-luxe text-plum/75 backdrop-blur"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-plum/15 bg-white/70 px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-luxe text-plum/75 backdrop-blur">
-              <Sparkles size={13} className="text-lilac" />
-              {studio.tagline} · Oranjestad
-            </span>
-          </motion.div>
+            <Sparkles size={13} className="text-lilac" />
+            Beauty that feels like heaven
+          </motion.span>
 
           <motion.h1
-            initial={{ opacity: 0, y: 26 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.08, ease }}
-            className="display-title mt-6 text-5xl text-plum-900 sm:text-6xl lg:text-[4.6rem]"
+            initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.08, ease }}
+            className="display-title mt-6 text-[3.1rem] leading-[1.04] text-plum-900 sm:text-6xl lg:text-[4.7rem]"
           >
-            Your crowning glory,
-            <span className="block italic text-plum/85">beautifully kept.</span>
+            Confidence
+            <span className="block">starts with</span>
+            <span className="block font-display italic text-plum/85">beautiful hair.</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.18, ease }}
+            initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.18, ease }}
             className="mt-7 max-w-md text-[1.02rem] leading-relaxed text-ink/65"
           >
-            A refined sanctuary for hair, built on precision, polish and a quiet sense of luxury.
-            Where craft meets care — and every appointment feels like a moment for you.
+            Luxury hair services designed to bring out your best. Every detail, every strand,
+            every moment — crafted just for you.
           </motion.p>
 
+          {/* decorative divider */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.28, ease }}
-            className="mt-9 flex flex-wrap items-center gap-4"
+            initial={{ opacity: 0, scaleX: 0.4 }} animate={{ opacity: 1, scaleX: 1 }} transition={{ duration: 0.9, delay: 0.28, ease }}
+            className="mt-8 flex max-w-xs items-center gap-3 text-lilac"
+          >
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent via-plum/30 to-plum/20" />
+            <span className="block h-1.5 w-1.5 rotate-45 bg-lilac" />
+            <span className="h-px flex-1 bg-gradient-to-l from-transparent via-plum/30 to-plum/20" />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.36, ease }}
+            className="mt-8 flex flex-wrap items-center gap-4"
           >
             <Link to="/book" className="btn-primary group">
               Book Appointment
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
-            <Link to="/services" className="btn-secondary">
-              View Services
+            <Link to="/services" className="btn-secondary group">
+              Explore Services
+              <ArrowRight size={15} className="opacity-0 -ml-4 transition-all group-hover:ml-0 group-hover:opacity-100" />
             </Link>
           </motion.div>
 
+          {/* social proof */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.45, ease }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.9, delay: 0.5, ease }}
             className="mt-10 flex items-center gap-5"
           >
             <div className="flex -space-x-3">
-              {[
-                'photo-1544005313-94ddf0286df2',
-                'photo-1502823403499-6ccfcf4fb453',
-                'photo-1534528741775-53994a69daeb',
-                'photo-1487412720507-e7ab37603c6f',
-              ].map((p) => (
-                <img
-                  key={p}
-                  src={`https://images.unsplash.com/${p}?auto=format&fit=crop&w=80&q=80`}
-                  alt=""
-                  className="h-10 w-10 rounded-full border-2 border-porcelain object-cover"
-                  loading="lazy"
-                />
+              {avatars.map((p) => (
+                <img key={p} src={`https://images.unsplash.com/${p}?auto=format&fit=crop&w=80&q=80`} alt=""
+                  className="h-11 w-11 rounded-full border-2 border-porcelain object-cover shadow-soft" loading="lazy" />
               ))}
+              <span className="grid h-11 w-11 place-items-center rounded-full border-2 border-porcelain bg-plum text-[0.6rem] font-semibold text-porcelain">500+</span>
             </div>
             <div>
-              <div className="flex items-center gap-1 text-plum">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star key={i} size={13} className="fill-lilac text-lilac" />
-                ))}
+              <div className="flex items-center gap-1 text-lilac">
+                {[0, 1, 2, 3, 4].map((i) => <Star key={i} size={14} className="fill-lilac text-lilac" />)}
               </div>
-              <p className="mt-1 text-xs text-ink/55">
-                Loved by hundreds of guests across Aruba
-              </p>
+              <p className="mt-1 text-xs text-ink/55">Trusted by hundreds of beautiful clients</p>
             </div>
           </motion.div>
         </div>
 
-        {/* Imagery */}
-        <div className="relative">
+        {/* ───────── RIGHT: layered imagery ───────── */}
+        <div className="relative mx-auto w-full max-w-[460px] lg:mx-0 lg:ml-auto">
+          {/* arched salon image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease }}
-            className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2.5rem] shadow-lift ring-1 ring-white/60"
+            initial={{ opacity: 0, scale: 0.95, y: 28 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1, delay: 0.2, ease }}
+            className="group relative aspect-[4/5.1] w-full overflow-hidden rounded-[13rem_13rem_2.2rem_2.2rem] border-[6px] border-white bg-white shadow-lift ring-1 ring-plum/10"
           >
-            <img
-              src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=80"
-              alt="A stylist at Heaven's Hair Studio"
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-plum-900/30 via-transparent to-transparent" />
+            <img src={SALON} onError={onErr(SALON_FB)} alt="Inside Heaven's Hair Studio"
+              className="h-full w-full scale-105 object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110" />
+            <div className="absolute inset-0 bg-gradient-to-t from-plum-900/25 via-transparent to-transparent" />
           </motion.div>
 
-          {/* floating glass card */}
+          {/* floating polaroid + paperclip */}
+          <motion.figure
+            initial={{ opacity: 0, y: -20, rotate: 0 }} animate={{ opacity: 1, y: [0, -8, 0], rotate: 5 }}
+            transition={{ opacity: { duration: 0.8, delay: 0.6 }, rotate: { duration: 0.8, delay: 0.6 }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 } }}
+            className="absolute -right-3 -top-6 w-40 sm:-right-8 sm:w-44"
+          >
+            <Paperclip />
+            <div className="rounded-[1.1rem] border border-plum/5 bg-white p-2.5 pb-7 shadow-card">
+              <div className="overflow-hidden rounded-[0.7rem]">
+                <img src={POLA} onError={onErr(POLA_FB)} alt="Hair inspiration" className="aspect-[4/5] w-full object-cover" />
+              </div>
+              <figcaption className="mt-2 text-center font-display text-[0.78rem] italic text-plum/70">Today&apos;s inspiration</figcaption>
+            </div>
+          </motion.figure>
+
+          {/* floating service card */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.55, ease }}
-            className="absolute -left-2 bottom-10 glass rounded-3xl p-4 shadow-card sm:-left-8"
+            initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.7, ease }}
+            className="absolute -bottom-7 -left-3 w-[15.5rem] rounded-3xl border border-plum/10 bg-white/95 p-4 shadow-card backdrop-blur sm:-left-8"
           >
             <div className="flex items-center gap-3">
-              <img src="/brand/logo.png" alt="" className="h-11 w-11 rounded-xl object-cover" />
+              <img src="/brand/logo.png" alt="" className="h-10 w-10 rounded-full object-cover ring-1 ring-plum/10" />
               <div>
-                <p className="font-display text-lg font-semibold leading-none text-plum-900">
-                  Signature Balayage
-                </p>
-                <p className="mt-1 text-xs text-ink/55">Hand-painted · from $165</p>
+                <p className="font-display text-[1.18rem] font-semibold leading-none text-plum-900">Signature Balayage</p>
+                <p className="mt-1.5 text-[0.72rem] leading-snug text-ink/55">Hand-painted dimension.<br />Effortless beauty.</p>
               </div>
+            </div>
+            <div className="mt-3 flex items-center justify-between border-t border-plum/10 pt-3">
+              <span className="text-[0.62rem] font-semibold uppercase tracking-luxe text-plum/55">Starting at</span>
+              <span className="font-display text-lg font-semibold text-plum">from <span className="text-wine">$165</span></span>
             </div>
           </motion.div>
 
-          {/* floating rating chip */}
+          {/* gold wax seal — overlaps polaroid + card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.7, ease }}
-            className="absolute -right-1 top-8 glass rounded-2xl px-4 py-3 shadow-card sm:-right-6"
+            initial={{ opacity: 0, scale: 0.6, rotate: -20 }} animate={{ opacity: 1, scale: 1, rotate: -8 }}
+            transition={{ duration: 0.8, delay: 0.95, ease }}
+            className="absolute bottom-[6.5rem] left-[3.2rem] z-20 drop-shadow-[0_8px_16px_rgba(74,44,61,0.35)] sm:left-16"
           >
-            <p className="font-display text-2xl font-semibold text-plum-900">4.9</p>
-            <div className="mt-0.5 flex gap-0.5">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <Star key={i} size={11} className="fill-lilac text-lilac" />
-              ))}
-            </div>
+            <WaxSeal />
           </motion.div>
         </div>
       </div>
 
-      {/* graceful divider */}
-      <div className="relative h-16 sm:h-24">
-        <svg
-          className="absolute bottom-0 h-full w-full text-porcelain"
-          viewBox="0 0 1440 80"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
-          <path d="M0,40 C360,90 1080,-10 1440,40 L1440,80 L0,80 Z" fill="currentColor" />
-        </svg>
+      {/* ───────── bottom feature strip ───────── */}
+      <div className="relative bg-plum-grad">
+        <div className="container-luxe grid grid-cols-1 gap-y-8 py-10 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-white/12 lg:py-9">
+          {features.map((f, i) => (
+            <motion.div
+              key={f.title}
+              initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.08, ease }}
+              className="flex flex-col items-center px-6 text-center lg:px-8"
+            >
+              <span className="grid h-12 w-12 place-items-center rounded-full border border-lilac/40 text-lilac/90">
+                <f.icon size={20} strokeWidth={1.4} />
+              </span>
+              <h3 className="mt-4 font-display text-lg font-semibold text-porcelain">{f.title}</h3>
+              <p className="mt-1.5 max-w-[15rem] text-[0.8rem] leading-relaxed text-porcelain/65">{f.desc}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
+  )
+}
+
+/* ── gold wax seal with embossed HH monogram ── */
+function WaxSeal() {
+  const beads = Array.from({ length: 24 }, (_, i) => { const a = (i / 24) * Math.PI * 2; return [50 + Math.cos(a) * 45.5, 50 + Math.sin(a) * 45.5] })
+  return (
+    <svg width="92" height="92" viewBox="0 0 100 100" aria-hidden>
+      <defs>
+        <radialGradient id="goldFace" cx="38%" cy="33%" r="75%">
+          <stop offset="0%" stopColor="#F7E7B0" /><stop offset="42%" stopColor="#E2BE6A" />
+          <stop offset="78%" stopColor="#C49A41" /><stop offset="100%" stopColor="#9A7227" />
+        </radialGradient>
+        <radialGradient id="goldBead" cx="35%" cy="30%" r="80%">
+          <stop offset="0%" stopColor="#F9EDC2" /><stop offset="100%" stopColor="#B08833" />
+        </radialGradient>
+        <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#fff" stopOpacity="0.55" /><stop offset="45%" stopColor="#fff" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      {beads.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="4.4" fill="url(#goldBead)" />)}
+      <circle cx="50" cy="50" r="42" fill="url(#goldFace)" />
+      <circle cx="50" cy="50" r="42" fill="url(#sheen)" />
+      <circle cx="50" cy="50" r="35" fill="none" stroke="#8A6320" strokeWidth="1" strokeOpacity="0.55" />
+      <circle cx="50" cy="50" r="32.5" fill="none" stroke="#FBEFC8" strokeWidth="0.8" strokeOpacity="0.5" />
+      <text x="50" y="58.5" textAnchor="middle" fontFamily="'Cormorant Garamond', Georgia, serif" fontWeight="600" fontSize="30"
+        fill="#7A551B" style={{ letterSpacing: '-2px' }}>HH</text>
+      <text x="50" y="58.1" textAnchor="middle" fontFamily="'Cormorant Garamond', Georgia, serif" fontWeight="600" fontSize="30"
+        fill="#A87E2E" fillOpacity="0.6" style={{ letterSpacing: '-2px' }}>HH</text>
+      <ellipse cx="38" cy="34" rx="15" ry="9" fill="#fff" opacity="0.22" transform="rotate(-25 38 34)" />
+    </svg>
+  )
+}
+
+/* ── realistic metallic paperclip ── */
+function Paperclip() {
+  return (
+    <svg width="46" height="60" viewBox="0 0 46 60" className="absolute -top-7 left-1/2 z-10 -translate-x-1/2 rotate-[8deg] drop-shadow-[0_4px_5px_rgba(74,44,61,0.3)]" aria-hidden>
+      <defs>
+        <linearGradient id="clip" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#9A7227" /><stop offset="28%" stopColor="#F4E2A4" />
+          <stop offset="55%" stopColor="#C9A24B" /><stop offset="80%" stopColor="#F7EBC2" /><stop offset="100%" stopColor="#8A6320" />
+        </linearGradient>
+      </defs>
+      <path d="M15 50 V18 a8 8 0 0 1 16 0 V44 a4.5 4.5 0 0 1-9 0 V22"
+        fill="none" stroke="url(#clip)" strokeWidth="4.2" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+/* ── subtle editorial background: curves, sparkles, stars, blossom ── */
+function Decor() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+      {/* curved editorial lines */}
+      <svg className="absolute -left-10 top-0 h-full w-[60%] text-plum/10" viewBox="0 0 600 700" fill="none" preserveAspectRatio="xMidYMid slice">
+        <path d="M-40 120 C 160 60 300 220 560 110" stroke="currentColor" strokeWidth="1" />
+        <path d="M-40 200 C 200 150 320 300 600 210" stroke="currentColor" strokeWidth="1" strokeOpacity="0.7" />
+        <circle cx="120" cy="560" r="150" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
+      </svg>
+      {/* blossom branch, top-left */}
+      <svg className="absolute -left-4 -top-2 h-44 w-44 text-lilac/70 animate-float" viewBox="0 0 120 120" fill="none">
+        <path d="M6 14 C 40 30 64 52 92 92" stroke="#B98BBE" strokeWidth="1.4" strokeLinecap="round" />
+        <path d="M40 33 C 52 26 60 30 58 40" stroke="#B98BBE" strokeWidth="1.1" />
+        {[[22, 24], [44, 44], [66, 66], [86, 90], [54, 30]].map(([cx, cy], i) => (
+          <g key={i}>
+            {[0, 72, 144, 216, 288].map((d) => {
+              const a = (d * Math.PI) / 180
+              return <ellipse key={d} cx={cx + Math.cos(a) * 5} cy={cy + Math.sin(a) * 5} rx="3.4" ry="2" fill="#E7C7E6" transform={`rotate(${d} ${cx + Math.cos(a) * 5} ${cy + Math.sin(a) * 5})`} />
+            })}
+            <circle cx={cx} cy={cy} r="1.6" fill="#CDA8D0" />
+          </g>
+        ))}
+      </svg>
+      {/* sparkles + stars */}
+      {[['12%', '60%', 14], ['86%', '30%', 11], ['70%', '78%', 13], ['30%', '88%', 10], ['94%', '64%', 9]].map(([l, t, s], i) => (
+        <Sparkles key={i} size={s} className="absolute text-lilac/55 animate-float" style={{ left: l, top: t, animationDelay: `${i}s` }} />
+      ))}
+    </div>
   )
 }
