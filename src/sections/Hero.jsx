@@ -106,11 +106,11 @@ export default function Hero() {
         </div>
 
         {/* ───────── RIGHT: layered imagery ───────── */}
-        <div className="relative mx-auto w-full max-w-[460px] lg:mx-0 lg:ml-auto">
+        <div className="relative mx-auto w-full max-w-[500px] lg:mx-0 lg:ml-auto">
           {/* arched salon image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 28 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1, delay: 0.2, ease }}
-            className="group relative aspect-[4/5.1] w-full overflow-hidden rounded-[13rem_13rem_2.2rem_2.2rem] border-[6px] border-white bg-white shadow-lift ring-1 ring-plum/10"
+            className="group relative aspect-[1/1.06] w-full overflow-hidden rounded-[13rem_13rem_2.2rem_2.2rem] border-[6px] border-white bg-white shadow-lift ring-1 ring-plum/10"
           >
             <img src={SALON} onError={onErr(SALON_FB)} alt="Inside Heaven's Hair Studio"
               className="h-full w-full scale-105 object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110" />
@@ -119,30 +119,29 @@ export default function Hero() {
 
           {/* floating polaroid + paperclip */}
           <motion.figure
-            initial={{ opacity: 0, y: -20, rotate: 0 }} animate={{ opacity: 1, y: [0, -8, 0], rotate: 5 }}
+            initial={{ opacity: 0, y: -20, rotate: -8 }} animate={{ opacity: 1, y: [0, -7, 0], rotate: -8 }}
             transition={{ opacity: { duration: 0.8, delay: 0.6 }, rotate: { duration: 0.8, delay: 0.6 }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 } }}
-            className="absolute -top-7 right-2 z-10 w-44 sm:w-48"
+            className="absolute -top-[4%] -right-4 z-30 w-[210px] sm:-right-6"
           >
-            <img src="/hero/paperclip.png" alt="" className="absolute -top-9 left-1/2 z-10 w-11 -translate-x-1/2 rotate-[9deg] drop-shadow-[0_7px_8px_rgba(74,44,61,0.32)]" />
-            <div className="rounded-[1.1rem] border border-plum/5 bg-white p-2.5 pb-7 shadow-card">
-              <div className="overflow-hidden rounded-[0.7rem]">
-                <img src={POLA} onError={onErr(POLA_FB)} alt="Hair inspiration" className="aspect-[4/5] w-full object-cover" />
+            <img src="/hero/paperclip.png" alt="" className="absolute -top-9 left-1/2 z-10 w-11 -translate-x-1/2 rotate-[-4deg] drop-shadow-[0_7px_8px_rgba(74,44,61,0.32)]" />
+            <div className="rounded-[0.5rem] border border-plum/5 bg-white p-2.5 pb-6 shadow-card">
+              <div className="overflow-hidden rounded-[0.25rem]">
+                <img src={POLA} onError={onErr(POLA_FB)} alt="Hair inspiration" className="aspect-[4/4.6] w-full object-cover" />
               </div>
-              <figcaption className="mt-2 text-center font-display text-[0.78rem] italic text-plum/70">Today&apos;s inspiration</figcaption>
             </div>
           </motion.figure>
 
           {/* floating service card */}
           <motion.div
             initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.7, ease }}
-            className="absolute right-1 top-[9.5rem] z-10 w-[15.5rem] rounded-3xl border border-plum/10 bg-white/95 p-4 shadow-card backdrop-blur"
+            className="absolute right-0 top-[44%] z-10 w-[250px] rounded-2xl border border-plum/10 bg-white/95 p-4 shadow-card backdrop-blur"
           >
-            {/* gold wax seal — sits on the card's top-left, overlapping the polaroid above */}
+            {/* gold wax seal (~58px) — sits on the card's top-left, bridging the polaroid above */}
             <motion.img
-              initial={{ opacity: 0, scale: 0.6, rotate: -22 }} animate={{ opacity: 1, scale: 1, rotate: -9 }}
+              initial={{ opacity: 0, scale: 0.5, rotate: -22 }} animate={{ opacity: 1, scale: 1, rotate: -8 }}
               transition={{ duration: 0.8, delay: 0.95, ease }}
               src="/hero/wax-seal.png" alt="Heaven's Hair Studio wax seal"
-              className="absolute -left-11 -top-12 z-20 w-[6.7rem] drop-shadow-[0_10px_18px_rgba(74,44,61,0.35)]"
+              className="absolute -left-7 -top-9 z-20 w-[64px] drop-shadow-[0_8px_14px_rgba(74,44,61,0.38)]"
             />
             <div className="flex items-center gap-3">
               <img src="/brand/logo.png" alt="" className="h-10 w-10 rounded-full object-cover ring-1 ring-plum/10" />
