@@ -32,7 +32,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute -right-24 top-40 h-80 w-80 rounded-full bg-blush/60 blur-3xl" />
       <Decor />
 
-      <div className="container-luxe relative grid items-center gap-12 py-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-6 lg:py-20">
+      <div className="container-luxe relative grid items-center gap-12 py-14 lg:grid-cols-[0.78fr_1.22fr] lg:gap-10 lg:py-20">
         {/* ───────── LEFT: copy ───────── */}
         <div className="relative z-10">
           <motion.span
@@ -106,9 +106,9 @@ export default function Hero() {
         </div>
 
         {/* ───────── RIGHT: layered imagery ───────── */}
-        <div className="relative mx-auto w-full max-w-[760px] lg:mx-0 lg:ml-auto">
+        <div className="relative mx-auto w-full max-w-[860px] lg:mx-0 lg:ml-auto">
           {/* arch wrapper — large salon photo, left-aligned so the stacked cards hang half-off its right edge */}
-          <div className="relative w-[82%]">
+          <div className="relative w-[84%]">
             {/* arched salon image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 28 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1, delay: 0.2, ease }}
