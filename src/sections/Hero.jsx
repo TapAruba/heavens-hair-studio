@@ -32,7 +32,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute -right-24 top-40 h-80 w-80 rounded-full bg-blush/60 blur-3xl" />
       <Decor />
 
-      <div className="container-luxe relative grid items-center gap-12 py-14 lg:grid-cols-[1.04fr_0.96fr] lg:gap-8 lg:py-20">
+      <div className="container-luxe relative grid items-center gap-12 py-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-6 lg:py-20">
         {/* ───────── LEFT: copy ───────── */}
         <div className="relative z-10">
           <motion.span
@@ -106,9 +106,9 @@ export default function Hero() {
         </div>
 
         {/* ───────── RIGHT: layered imagery ───────── */}
-        <div className="relative mx-auto w-full max-w-[600px] lg:mx-0 lg:ml-auto">
-          {/* arch wrapper — narrower & left-aligned so the stacked cards can hang half-off its right edge */}
-          <div className="relative w-[74%]">
+        <div className="relative mx-auto w-full max-w-[760px] lg:mx-0 lg:ml-auto">
+          {/* arch wrapper — large salon photo, left-aligned so the stacked cards hang half-off its right edge */}
+          <div className="relative w-[82%]">
             {/* arched salon image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 28 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1, delay: 0.2, ease }}
@@ -123,7 +123,7 @@ export default function Hero() {
             <motion.figure
               initial={{ opacity: 0, y: -20, rotate: -8 }} animate={{ opacity: 1, y: [0, -7, 0], rotate: -8 }}
               transition={{ opacity: { duration: 0.8, delay: 0.6 }, rotate: { duration: 0.8, delay: 0.6 }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 } }}
-              className="absolute -top-[4%] -right-[108px] z-30 w-[216px]"
+              className="absolute -top-[4%] -right-[100px] z-30 w-[208px]"
             >
               <img src="/hero/paperclip.png" alt="" className="absolute -top-9 left-1/2 z-10 w-[46px] -translate-x-1/2 rotate-[-4deg] drop-shadow-[0_7px_8px_rgba(74,44,61,0.32)]" />
               <div className="rounded-[0.6rem] border border-plum/5 bg-white p-2.5 pb-6 shadow-card">
@@ -136,7 +136,7 @@ export default function Hero() {
             {/* service card — directly UNDER the polaroid, also straddling the arch's right edge */}
             <motion.div
               initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.7, ease }}
-              className="absolute -right-[128px] top-[57%] z-10 w-[256px] rounded-2xl border border-plum/10 bg-white/95 p-4 shadow-card backdrop-blur"
+              className="absolute -right-[116px] top-[58%] z-10 w-[248px] rounded-2xl border border-plum/10 bg-white/95 p-4 shadow-card backdrop-blur"
             >
               <div className="flex items-center gap-3">
                 <img src="/brand/logo.png" alt="" className="h-11 w-11 rounded-full object-cover ring-1 ring-plum/10" />
