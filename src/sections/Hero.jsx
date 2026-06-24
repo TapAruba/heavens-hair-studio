@@ -106,7 +106,7 @@ export default function Hero() {
         </div>
 
         {/* ───────── RIGHT: layered imagery ───────── */}
-        <div className="relative mx-auto w-full max-w-[500px] lg:mx-0 lg:ml-auto">
+        <div className="relative mx-auto w-full max-w-[560px] lg:mx-0 lg:ml-auto">
           {/* arched salon image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 28 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1, delay: 0.2, ease }}
@@ -117,44 +117,45 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-t from-plum-900/25 via-transparent to-transparent" />
           </motion.div>
 
-          {/* floating polaroid + paperclip */}
+          {/* floating polaroid + paperclip — 220×270, rotated -8deg, top-right over the arch */}
           <motion.figure
             initial={{ opacity: 0, y: -20, rotate: -8 }} animate={{ opacity: 1, y: [0, -7, 0], rotate: -8 }}
             transition={{ opacity: { duration: 0.8, delay: 0.6 }, rotate: { duration: 0.8, delay: 0.6 }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 } }}
-            className="absolute -top-[4%] -right-4 z-30 w-[210px] sm:-right-6"
+            className="absolute -top-[4%] right-[4%] z-30 w-[220px]"
           >
-            <img src="/hero/paperclip.png" alt="" className="absolute -top-9 left-1/2 z-10 w-11 -translate-x-1/2 rotate-[-4deg] drop-shadow-[0_7px_8px_rgba(74,44,61,0.32)]" />
-            <div className="rounded-[0.5rem] border border-plum/5 bg-white p-2.5 pb-6 shadow-card">
-              <div className="overflow-hidden rounded-[0.25rem]">
+            <img src="/hero/paperclip.png" alt="" className="absolute -top-9 left-1/2 z-10 w-[46px] -translate-x-1/2 rotate-[-4deg] drop-shadow-[0_7px_8px_rgba(74,44,61,0.32)]" />
+            <div className="rounded-[0.6rem] border border-plum/5 bg-white p-2.5 pb-6 shadow-card">
+              <div className="overflow-hidden rounded-[0.3rem]">
                 <img src={POLA} onError={onErr(POLA_FB)} alt="Hair inspiration" className="aspect-[4/4.6] w-full object-cover" />
               </div>
             </div>
           </motion.figure>
 
-          {/* floating service card */}
+          {/* floating service card — 260 wide, 16px radius, overlapping the arch lower-left */}
           <motion.div
             initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.7, ease }}
-            className="absolute right-0 top-[44%] z-10 w-[250px] rounded-2xl border border-plum/10 bg-white/95 p-4 shadow-card backdrop-blur"
+            className="absolute left-[3%] top-[50%] z-10 w-[260px] rounded-2xl border border-plum/10 bg-white/95 p-4 shadow-card backdrop-blur"
           >
-            {/* gold wax seal (~58px) — sits on the card's top-left, bridging the polaroid above */}
-            <motion.img
-              initial={{ opacity: 0, scale: 0.5, rotate: -22 }} animate={{ opacity: 1, scale: 1, rotate: -8 }}
-              transition={{ duration: 0.8, delay: 0.95, ease }}
-              src="/hero/wax-seal.png" alt="Heaven's Hair Studio wax seal"
-              className="absolute -left-7 -top-9 z-20 w-[64px] drop-shadow-[0_8px_14px_rgba(74,44,61,0.38)]"
-            />
             <div className="flex items-center gap-3">
-              <img src="/brand/logo.png" alt="" className="h-10 w-10 rounded-full object-cover ring-1 ring-plum/10" />
+              <img src="/brand/logo.png" alt="" className="h-11 w-11 rounded-full object-cover ring-1 ring-plum/10" />
               <div>
-                <p className="font-display text-[1.18rem] font-semibold leading-none text-plum-900">Signature Balayage</p>
-                <p className="mt-1.5 text-[0.72rem] leading-snug text-ink/55">Hand-painted dimension.<br />Effortless beauty.</p>
+                <p className="font-display text-[1.28rem] font-semibold leading-none text-plum-900">Signature Balayage</p>
+                <p className="mt-1.5 text-[0.74rem] leading-snug text-ink/55">Hand-painted dimension.<br />Effortless beauty.</p>
               </div>
             </div>
-            <div className="mt-3 flex items-center justify-between border-t border-plum/10 pt-3">
+            <div className="mt-3.5 flex items-center justify-between border-t border-plum/10 pt-3">
               <span className="text-[0.62rem] font-semibold uppercase tracking-luxe text-plum/55">Starting at</span>
               <span className="font-display text-lg font-semibold text-plum">from <span className="text-wine">$165</span></span>
             </div>
           </motion.div>
+
+          {/* gold wax seal — stamped on the seam, overlapping the polaroid's lower-left and the card's top-right */}
+          <motion.img
+            initial={{ opacity: 0, scale: 0.5, rotate: -24 }} animate={{ opacity: 1, scale: 1, rotate: -10 }}
+            transition={{ duration: 0.8, delay: 0.95, ease }}
+            src="/hero/wax-seal.png" alt="Heaven's Hair Studio wax seal"
+            className="absolute left-[52%] top-[45%] z-40 -ml-[43px] -mt-[43px] w-[86px] drop-shadow-[0_10px_16px_rgba(74,44,61,0.42)]"
+          />
         </div>
       </div>
 
