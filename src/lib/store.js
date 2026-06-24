@@ -104,7 +104,7 @@ const seed = () => {
     {
       id: 'HHS-48204',
       service: 'bridal',
-      stylist: 'nohely',
+      stylist: 'felicia',
       date: day(3),
       time: '9:00 AM',
       name: 'Daniela Velasquez',

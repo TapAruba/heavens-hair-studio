@@ -274,8 +274,8 @@ export default function Booking() {
                       selected={data.stylist === s.id}
                       onClick={() => set({ stylist: s.id })}
                     >
-                      <div className="relative h-32 overflow-hidden rounded-2xl">
-                        <img src={s.image} alt={s.name} className="h-full w-full object-cover" loading="lazy" />
+                      <div className="relative grid h-32 place-items-center overflow-hidden rounded-2xl bg-blush/50">
+                        <span className="font-display text-5xl font-semibold text-plum">{s.name[0]}</span>
                         <span className="absolute left-2 top-2 rounded-full bg-emerald-500/90 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wide text-white">
                           Available
                         </span>

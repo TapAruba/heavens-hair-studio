@@ -38,18 +38,6 @@ export const stylists = [
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=600&q=80',
     instagram: 'heavens_hair_studio',
   },
-  {
-    id: 'nohely',
-    name: 'Noheli',
-    title: 'Stylist & Extensions Artist',
-    specialty: 'Extensions & Bridal',
-    experience: 8,
-    rating: 4.9,
-    bio: 'An artist with length and volume, Noheli colour-matches extensions to perfection and crafts unforgettable bridal looks.',
-    image:
-      'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=600&q=80',
-    instagram: 'heavens_hair_studio',
-  },
 ]
 
 export const getStylist = (id) => stylists.find((s) => s.id === id)

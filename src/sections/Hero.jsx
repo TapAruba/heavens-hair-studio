@@ -5,9 +5,9 @@ import { ArrowRight, Star, Sparkles, Crown, Heart, CalendarHeart } from 'lucide-
 const ease = [0.16, 1, 0.3, 1]
 
 /* local-first images: drop AI renders into /public/hero/ and they auto-replace the fallbacks */
-const SALON = '/hero/salon-arch.png'
+const SALON = '/photos/hair-magenta.jpg'
 const SALON_FB = 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80'
-const POLA = '/photos/hair-magenta.jpg'
+const POLA = '/photos/hair-caramel.jpg'
 const POLA_FB = 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=600&q=80'
 const onErr = (fb) => (e) => { if (e.currentTarget.src !== fb) e.currentTarget.src = fb }
 
@@ -114,7 +114,7 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.95, y: 28 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1, delay: 0.2, ease }}
               className="group relative aspect-[1/1.28] w-full overflow-hidden rounded-[10rem_10rem_2.2rem_2.2rem] border-[6px] border-white bg-white shadow-lift ring-1 ring-plum/10"
             >
-              <img src={SALON} onError={onErr(SALON_FB)} alt="Inside Heaven's Hair Studio"
+              <img src={SALON} onError={onErr(SALON_FB)} alt="Vivid colour work by Heaven's Hair Studio"
                 className="h-full w-full scale-105 object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-plum-900/25 via-transparent to-transparent" />
             </motion.div>
