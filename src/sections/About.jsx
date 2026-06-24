@@ -8,21 +8,21 @@ export default function About() {
         {/* layered imagery */}
         <div className="relative">
           <Reveal>
-            <div className="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2.5rem] shadow-card ring-1 ring-plum/5">
+            <div className="relative aspect-[4/3.2] w-full max-w-xl overflow-hidden rounded-[2.5rem] shadow-card ring-1 ring-plum/5">
               <img
-                src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?auto=format&fit=crop&w=900&q=80"
-                alt="Inside Heaven's Hair Studio"
+                src="/photos/team.jpg"
+                alt="The Heaven's Hair Studio team"
                 className="h-full w-full object-cover"
                 loading="lazy"
               />
             </div>
           </Reveal>
           <Reveal delay={0.15}>
-            <div className="absolute -bottom-8 -right-2 w-44 overflow-hidden rounded-3xl border-4 border-porcelain shadow-lift sm:-right-8 sm:w-56">
+            <div className="absolute -bottom-8 -right-2 w-40 overflow-hidden rounded-3xl border-4 border-porcelain shadow-lift sm:-right-8 sm:w-52">
               <img
-                src="https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&w=500&q=80"
+                src="/photos/action-color.jpg"
                 alt="Colour work at Heaven's Hair Studio"
-                className="aspect-square w-full object-cover"
+                className="aspect-[4/5] w-full object-cover"
                 loading="lazy"
               />
             </div>
@@ -33,13 +33,13 @@ export default function About() {
         <div>
           <SectionHeading
             eyebrow="The Essence"
-            title="A refined sanctuary for hair."
-            subtitle="Heaven’s Hair Studio is a boutique salon in the heart of Oranjestad, where the latest techniques meet a warm, unhurried experience. We believe great hair is equal parts craft and care — and that every guest deserves to leave feeling like the most polished version of themselves."
+            title="A refined sanctuary for hair &amp; makeup."
+            subtitle="Heaven’s Hair Studio is a boutique hair and makeup salon in the heart of Oranjestad, where the latest techniques meet a warm, unhurried experience. From colour and cuts to flawless glam, we believe beauty is equal parts craft and care — and that every guest deserves to leave feeling like the most polished version of themselves."
           />
 
           <div className="mt-10 grid gap-5 sm:grid-cols-3">
             {[
-              { icon: Scissors, title: 'Master Craft', text: 'Cut, colour & treatment by seasoned specialists.' },
+              { icon: Scissors, title: 'Master Craft', text: 'Cut, colour, treatment & makeup by specialists.' },
               { icon: Sparkles, title: 'Quiet Luxury', text: 'A calm, considered space designed for you.' },
               { icon: HeartHandshake, title: 'Genuine Care', text: 'Honest advice and hair health, always first.' },
             ].map((f, i) => (
@@ -60,7 +60,7 @@ export default function About() {
           <Reveal delay={0.3}>
             <div className="mt-9 flex flex-wrap gap-3">
               <Pill>Hair Studio</Pill>
-              <Pill>Professional Supply</Pill>
+              <Pill>Makeup Artistry</Pill>
               <Pill>Bridal &amp; Events</Pill>
               <Pill>Extensions</Pill>
             </div>

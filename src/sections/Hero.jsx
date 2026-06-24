@@ -7,7 +7,7 @@ const ease = [0.16, 1, 0.3, 1]
 /* local-first images: drop AI renders into /public/hero/ and they auto-replace the fallbacks */
 const SALON = '/hero/salon-arch.png'
 const SALON_FB = 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80'
-const POLA = '/hero/polaroid-hair.png'
+const POLA = '/photos/hair-magenta.jpg'
 const POLA_FB = 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=600&q=80'
 const onErr = (fb) => (e) => { if (e.currentTarget.src !== fb) e.currentTarget.src = fb }
 

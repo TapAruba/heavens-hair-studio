@@ -1,6 +1,5 @@
-// Service catalogue for Heaven's Hair Studio.
-// Images are tasteful placeholders (Unsplash) — swap `image` values with the
-// studio's own Instagram / Facebook photography before launch.
+// Service catalogue for Heaven's Hair Studio — a hair AND makeup salon.
+// Images are the studio's own photography (public/photos).
 
 export const services = [
   {
@@ -12,8 +11,7 @@ export const services = [
       'A consultation-led cut crafted to your hair type and the way you live. Includes a relaxing wash, scalp ritual and finish.',
     duration: 60,
     price: 65,
-    image:
-      'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=80',
+    image: '/photos/hair-pixie.jpg',
   },
   {
     id: 'color',
@@ -24,8 +22,7 @@ export const services = [
       'Full-head permanent or semi-permanent colour, custom blended for depth and shine, with a bond-building treatment.',
     duration: 120,
     price: 110,
-    image:
-      'https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&w=900&q=80',
+    image: '/photos/hair-magenta.jpg',
   },
   {
     id: 'highlights',
@@ -36,8 +33,7 @@ export const services = [
       'Foil highlights placed by hand to brighten and frame, finished with a gloss and blow-dry.',
     duration: 150,
     price: 135,
-    image:
-      'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=900&q=80',
+    image: '/photos/action-color.jpg',
   },
   {
     id: 'balayage',
@@ -48,8 +44,7 @@ export const services = [
       'Our signature freehand technique for a sun-kissed, seamless gradient with minimal upkeep. Includes toner and treatment.',
     duration: 180,
     price: 165,
-    image:
-      'https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=900&q=80',
+    image: '/photos/hair-caramel.jpg',
   },
   {
     id: 'blowout',
@@ -60,8 +55,7 @@ export const services = [
       'A wash, scalp massage and expert blow-dry styled to your occasion — bouncy, sleek or softly waved.',
     duration: 45,
     price: 45,
-    image:
-      'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=900&q=80',
+    image: '/photos/hair-auburn.jpg',
   },
   {
     id: 'keratin',
@@ -72,8 +66,7 @@ export const services = [
       'A smoothing keratin service that tames frizz and cuts styling time for months. Ideal for humid Aruba days.',
     duration: 150,
     price: 180,
-    image:
-      'https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?auto=format&fit=crop&w=900&q=80',
+    image: '/photos/hair-platinum.jpg',
   },
   {
     id: 'treatment',
@@ -84,8 +77,7 @@ export const services = [
       'An intensive bond and moisture ritual for hair that needs reviving — leaves strands soft, strong and luminous.',
     duration: 45,
     price: 55,
-    image:
-      'https://images.unsplash.com/photo-1571875257727-256c39da42af?auto=format&fit=crop&w=900&q=80',
+    image: '/photos/hair-caramel.jpg',
   },
   {
     id: 'extensions',
@@ -96,8 +88,7 @@ export const services = [
       'Consultation, colour-match and application of premium extensions for instant length and body. Price from consultation.',
     duration: 180,
     price: 250,
-    image:
-      'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=900&q=80',
+    image: '/photos/hair-auburn.jpg',
   },
   {
     id: 'styling',
@@ -108,8 +99,7 @@ export const services = [
       'Bespoke styling for galas, photoshoots and celebrations — from sculpted updos to romantic waves.',
     duration: 60,
     price: 70,
-    image:
-      'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=80',
+    image: '/photos/makeup-glam.jpg',
   },
   {
     id: 'bridal',
@@ -120,8 +110,7 @@ export const services = [
       'A dedicated bridal experience including trial, day-of styling and on-hand finishing. Book early — dates are limited.',
     duration: 120,
     price: 220,
-    image:
-      'https://images.unsplash.com/photo-1457972729786-0411a3b2b626?auto=format&fit=crop&w=900&q=80',
+    image: '/photos/hair-caramel.jpg',
   },
   {
     id: 'wash-style',
@@ -132,14 +121,54 @@ export const services = [
       'A cleansing wash, conditioning and a polished style — perfect between appointments.',
     duration: 30,
     price: 35,
-    image:
-      'https://images.unsplash.com/photo-1633681926035-ec1ac984418a?auto=format&fit=crop&w=900&q=80',
+    image: '/photos/hair-pixie.jpg',
+  },
+  // ── Makeup ────────────────────────────────────────────────
+  {
+    id: 'glam-makeup',
+    name: 'Glam Makeup',
+    category: 'Makeup',
+    blurb: 'A flawless, photo-ready face for any occasion.',
+    description:
+      'A full glam application — skin prep, sculpted eyes, lashes and a long-wear finish tailored to your features.',
+    duration: 60,
+    price: 75,
+    image: '/photos/makeup-closeup.jpg',
+  },
+  {
+    id: 'bridal-makeup',
+    name: 'Bridal Makeup',
+    category: 'Makeup',
+    blurb: 'Radiant, lasting beauty for your wedding day.',
+    description:
+      'A bridal makeup experience with trial and day-of application, designed to look luminous in person and on camera.',
+    duration: 75,
+    price: 130,
+    image: '/photos/makeup-glam.jpg',
+  },
+  {
+    id: 'artistry-makeup',
+    name: 'Creative & Editorial Makeup',
+    category: 'Makeup',
+    blurb: 'Bold, artistic looks for shoots and events.',
+    description:
+      'Statement and editorial makeup — gems, graphic liner and creative artistry for photoshoots, parties and performances.',
+    duration: 75,
+    price: 95,
+    image: '/photos/makeup-gems.jpg',
   },
 ]
 
-export const serviceCategories = ['All', 'Cut & Style', 'Colour', 'Treatment', 'Transformation']
+export const serviceCategories = [
+  'All',
+  'Cut & Style',
+  'Colour',
+  'Treatment',
+  'Transformation',
+  'Makeup',
+]
 
-export const featuredServiceIds = ['balayage', 'haircut', 'keratin', 'bridal']
+export const featuredServiceIds = ['balayage', 'color', 'glam-makeup', 'bridal']
 
 export const getService = (id) => services.find((s) => s.id === id)
 
