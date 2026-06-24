@@ -27,9 +27,9 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-blush-grad pt-[72px]">
       {/* ── ambient + decorative ── */}
-      <div className="pointer-events-none absolute inset-0 tx-dotgrid opacity-40" />
-      <div className="pointer-events-none absolute -left-40 top-24 h-[28rem] w-[28rem] rounded-full bg-lilac/25 blur-3xl" />
-      <div className="pointer-events-none absolute -right-24 top-40 h-80 w-80 rounded-full bg-blush/60 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 tx-dotgrid opacity-[0.22]" />
+      <div className="pointer-events-none absolute -left-40 top-24 h-[28rem] w-[28rem] rounded-full bg-lilac/20 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 top-40 h-80 w-80 rounded-full bg-blush/50 blur-3xl" />
       <Decor />
 
       <div className="container-luxe relative grid items-center gap-12 py-14 lg:grid-cols-[0.78fr_1.22fr] lg:gap-10 lg:py-20">
@@ -106,57 +106,59 @@ export default function Hero() {
         </div>
 
         {/* ───────── RIGHT: layered imagery ───────── */}
-        <div className="relative mx-auto w-full max-w-[860px] lg:mx-0 lg:ml-auto">
-          {/* arch wrapper — large salon photo, left-aligned so the stacked cards hang half-off its right edge */}
-          <div className="relative w-[84%]">
-            {/* arched salon image */}
+        <div className="relative mx-auto w-full max-w-[880px] lg:mx-0 lg:ml-auto lg:mr-[72px]">
+          {/* arch wrapper — large salon photo, left-aligned so the stacked cards hang half-off its right edge.
+              Layer order (back→front): arch · service card · polaroid · wax seal · paperclip */}
+          <div className="relative w-[97%]">
+            {/* contact/ambient shadow puddle beneath the arch for grounded depth */}
+            <div className="pointer-events-none absolute inset-x-6 bottom-3 z-0 h-12 rounded-[50%] bg-plum-900/20 blur-2xl" />
+
+            {/* arched salon image — the main visual anchor */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 28 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1, delay: 0.2, ease }}
-              className="group relative aspect-[1/1.28] w-full overflow-hidden rounded-[10rem_10rem_2.2rem_2.2rem] border-[6px] border-white bg-white shadow-lift ring-1 ring-plum/10"
+              className="group relative z-10 aspect-[1/1.28] w-full overflow-hidden rounded-[10rem_10rem_2.2rem_2.2rem] border-[6px] border-white bg-white ring-1 ring-plum/10 shadow-[0_4px_12px_-4px_rgba(74,44,61,0.10),0_24px_50px_-18px_rgba(74,44,61,0.30),0_50px_90px_-40px_rgba(74,44,61,0.28)]"
             >
-              <img src={SALON} onError={onErr(SALON_FB)} alt="Vivid colour work by Heaven's Hair Studio"
+              <img src={SALON} onError={onErr(SALON_FB)} alt="Editorial beauty work by Heaven's Hair Studio"
                 className="h-full w-full scale-105 object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-plum-900/25 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-plum-900/22 via-transparent to-transparent" />
             </motion.div>
 
-            {/* polaroid + paperclip — top, straddling the arch's right edge (half on the photo, half off) */}
-            <motion.figure
-              initial={{ opacity: 0, y: -20, rotate: -8 }} animate={{ opacity: 1, y: [0, -7, 0], rotate: -8 }}
-              transition={{ opacity: { duration: 0.8, delay: 0.6 }, rotate: { duration: 0.8, delay: 0.6 }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 } }}
-              className="absolute top-[6%] -right-[100px] z-30 w-[208px]"
+            {/* service card — back of the floating stack, lowered for breathing room */}
+            <motion.div
+              initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.7, ease }}
+              className="absolute -right-[92px] top-[46%] z-20 w-[262px] rounded-2xl border border-white/70 bg-white/95 p-6 backdrop-blur shadow-[0_2px_6px_-2px_rgba(74,44,61,0.08),0_20px_44px_-16px_rgba(74,44,61,0.22)]"
             >
-              <img src="/hero/paperclip.png" alt="" className="absolute -top-9 left-1/2 z-10 w-[46px] -translate-x-1/2 rotate-[-4deg] drop-shadow-[0_7px_8px_rgba(74,44,61,0.32)]" />
-              <div className="rounded-[0.6rem] border border-plum/5 bg-white p-2.5 pb-6 shadow-card">
+              <span className="text-[0.58rem] font-semibold uppercase tracking-luxe text-plum/45">Featured Service</span>
+              <p className="mt-2 font-display text-[1.5rem] font-semibold leading-none text-plum-900">Signature Balayage</p>
+              <p className="mt-2.5 text-[0.78rem] leading-relaxed text-ink/55">Hand-painted, sun-kissed dimension.</p>
+              <div className="my-4 h-px w-full bg-plum/10" />
+              <div className="flex items-end justify-between">
+                <span className="text-[0.58rem] font-semibold uppercase tracking-luxe text-plum/50">Starting at</span>
+                <span className="font-display text-2xl font-semibold leading-none text-plum">$165</span>
+              </div>
+            </motion.div>
+
+            {/* polaroid + paperclip — front of the stack, ~38% extending past the arch, naturally pinned */}
+            <motion.figure
+              initial={{ opacity: 0, y: -20, rotate: -7 }} animate={{ opacity: 1, y: [0, -7, 0], rotate: -7 }}
+              transition={{ opacity: { duration: 0.8, delay: 0.6 }, rotate: { duration: 0.8, delay: 0.6 }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 } }}
+              className="absolute top-[5%] -right-[84px] z-30 w-[220px]"
+            >
+              <div className="rounded-[0.6rem] border border-plum/5 bg-white p-2.5 pb-7 shadow-[0_2px_5px_-1px_rgba(74,44,61,0.10),0_14px_28px_-10px_rgba(74,44,61,0.24),0_34px_56px_-26px_rgba(74,44,61,0.26)]">
                 <div className="overflow-hidden rounded-[0.3rem]">
                   <img src={POLA} onError={onErr(POLA_FB)} alt="Hair inspiration" className="aspect-[4/4.6] w-full object-cover" />
                 </div>
               </div>
+              {/* gold paperclip — straddles the top edge, appears to hold the photo */}
+              <img src="/hero/paperclip.png" alt="" className="absolute -top-[18px] left-[34%] z-50 w-[44px] -translate-x-1/2 rotate-[8deg] drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)] drop-shadow-[0_5px_7px_rgba(74,44,61,0.38)]" />
             </motion.figure>
 
-            {/* service card — directly UNDER the polaroid, also straddling the arch's right edge */}
-            <motion.div
-              initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.7, ease }}
-              className="absolute -right-[116px] top-[44%] z-10 w-[248px] rounded-2xl border border-plum/10 bg-white/95 p-4 shadow-card backdrop-blur"
-            >
-              <div className="flex items-center gap-3">
-                <img src="/brand/logo.png" alt="" className="h-11 w-11 rounded-full object-cover ring-1 ring-plum/10" />
-                <div>
-                  <p className="font-display text-[1.28rem] font-semibold leading-none text-plum-900">Signature Balayage</p>
-                  <p className="mt-1.5 text-[0.74rem] leading-snug text-ink/55">Hand-painted dimension.<br />Effortless beauty.</p>
-                </div>
-              </div>
-              <div className="mt-3.5 flex items-center justify-between border-t border-plum/10 pt-3">
-                <span className="text-[0.62rem] font-semibold uppercase tracking-luxe text-plum/55">Starting at</span>
-                <span className="font-display text-lg font-semibold text-plum">from <span className="text-wine">$165</span></span>
-              </div>
-            </motion.div>
-
-            {/* gold wax seal — in the MIDDLE of the polaroid and the card, centered on the arch's right edge */}
+            {/* gold wax seal — anchors the seam, overlapping the polaroid above and the service card below */}
             <motion.img
               initial={{ opacity: 0, scale: 0.5, rotate: -24 }} animate={{ opacity: 1, scale: 1, rotate: -10 }}
               transition={{ duration: 0.8, delay: 0.95, ease }}
               src="/hero/wax-seal.png" alt="Heaven's Hair Studio wax seal"
-              className="absolute -right-[42px] top-[41%] z-40 -mt-[42px] w-[84px] drop-shadow-[0_10px_16px_rgba(74,44,61,0.42)]"
+              className="absolute -right-[66px] top-[44%] z-40 -mt-[46px] w-[94px] drop-shadow-[0_2px_3px_rgba(255,255,255,0.35)] drop-shadow-[0_6px_8px_rgba(74,44,61,0.30)] drop-shadow-[0_16px_22px_rgba(74,44,61,0.30)]"
             />
           </div>
         </div>
@@ -190,13 +192,13 @@ function Decor() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
       {/* curved editorial lines */}
-      <svg className="absolute -left-10 top-0 h-full w-[60%] text-plum/10" viewBox="0 0 600 700" fill="none" preserveAspectRatio="xMidYMid slice">
+      <svg className="absolute -left-10 top-0 h-full w-[60%] text-plum/[0.07]" viewBox="0 0 600 700" fill="none" preserveAspectRatio="xMidYMid slice">
         <path d="M-40 120 C 160 60 300 220 560 110" stroke="currentColor" strokeWidth="1" />
         <path d="M-40 200 C 200 150 320 300 600 210" stroke="currentColor" strokeWidth="1" strokeOpacity="0.7" />
         <circle cx="120" cy="560" r="150" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
       </svg>
       {/* blossom branch, top-left */}
-      <svg className="absolute -left-4 -top-2 h-44 w-44 text-lilac/70 animate-float" viewBox="0 0 120 120" fill="none">
+      <svg className="absolute -left-4 -top-2 h-44 w-44 text-lilac/50 animate-float" viewBox="0 0 120 120" fill="none">
         <path d="M6 14 C 40 30 64 52 92 92" stroke="#B98BBE" strokeWidth="1.4" strokeLinecap="round" />
         <path d="M40 33 C 52 26 60 30 58 40" stroke="#B98BBE" strokeWidth="1.1" />
         {[[22, 24], [44, 44], [66, 66], [86, 90], [54, 30]].map(([cx, cy], i) => (
@@ -211,7 +213,7 @@ function Decor() {
       </svg>
       {/* sparkles + stars */}
       {[['12%', '60%', 14], ['86%', '30%', 11], ['70%', '78%', 13], ['30%', '88%', 10], ['94%', '64%', 9]].map(([l, t, s], i) => (
-        <Sparkles key={i} size={s} className="absolute text-lilac/55 animate-float" style={{ left: l, top: t, animationDelay: `${i}s` }} />
+        <Sparkles key={i} size={s} className="absolute text-lilac/40 animate-float" style={{ left: l, top: t, animationDelay: `${i}s` }} />
       ))}
     </div>
   )
