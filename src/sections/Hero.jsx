@@ -23,7 +23,7 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '16%'])
   const bgScale = useTransform(scrollYProgress, [0, 1], [1.06, 1.14])
-  const compY = useTransform(scrollYProgress, [0, 1], [0, -46])
+  const compY = useTransform(scrollYProgress, [0, 1], [0, -54])
 
   return (
     <section ref={ref} className="relative min-h-[100svh] w-full overflow-hidden bg-plum-900">
@@ -39,15 +39,15 @@ export default function Hero() {
 
       {/* ── layered luxury overlay: dark plum left → crisp right, grounded bottom ── */}
       <div className="absolute inset-0 bg-gradient-to-r from-plum-900/85 via-plum-900/45 to-plum-900/5" />
-      <div className="absolute inset-0 bg-gradient-to-t from-plum-900/80 via-transparent to-plum-900/25" />
-      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_8%_85%,rgba(42,25,35,0.55),transparent_55%)]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-plum-900/65 via-transparent to-plum-900/25" />
+      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_8%_85%,rgba(42,25,35,0.5),transparent_55%)]" />
 
       {/* ── faint editorial decor ── */}
       <Decor />
 
       {/* ── content ── */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1440px] items-start px-6 pt-[104px] pb-16 sm:px-10 lg:items-center lg:px-[7%] lg:pt-[72px] lg:pb-24">
-        <div className="grid w-full items-center gap-10 lg:grid-cols-[1fr_1.02fr]">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1480px] items-start px-6 pt-[104px] pb-16 sm:px-10 lg:items-center lg:px-[6%] lg:pt-[72px] lg:pb-20">
+        <div className="grid w-full items-center gap-10 lg:grid-cols-[0.92fr_1.08fr]">
 
           {/* ───────── LEFT: copy ───────── */}
           <div className="relative max-w-xl text-porcelain">
@@ -136,74 +136,85 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-
-      {/* ── luxury bottom transition into the next section ── */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10">
-        <div className="h-52 bg-gradient-to-t from-porcelain via-porcelain/70 to-transparent" />
-        <svg className="-mt-[52px] block h-[64px] w-full text-porcelain sm:h-[88px]" viewBox="0 0 1440 88" preserveAspectRatio="none" aria-hidden>
-          <path d="M0,88 L1440,88 L1440,30 C 1080,78 360,6 0,46 Z" fill="currentColor" />
-        </svg>
-      </div>
     </section>
   )
 }
 
-/* ── the printed-photographs composition: portrait · polaroid · seal · card · paperclip ── */
+/* ── the printed-photographs composition: portrait · service card · polaroid · seal · paperclip ── */
 function FloatingComposition({ mobile = false }) {
-  return (
-    <div className={`relative mx-auto ${mobile ? 'w-full max-w-[420px]' : 'ml-auto w-full max-w-[560px]'}`}>
-      <div className={`relative ${mobile ? 'w-[74%]' : 'ml-[14%] w-[70%]'}`}>
-        {/* grounding shadow */}
-        <div className="pointer-events-none absolute inset-x-6 bottom-3 z-0 h-12 rounded-[50%] bg-plum-900/40 blur-2xl" />
+  // Desktop renders ~40% larger than mobile; each instance only shows at its breakpoint,
+  // so sizes can switch cleanly via the `mobile` flag (no clipping risk on small screens).
+  const wrap = mobile ? 'mx-auto w-full max-w-[430px]' : 'mx-auto w-full max-w-[660px] lg:mr-0'
+  const inner = mobile ? 'w-[76%]' : 'w-[82%]'
+  const portraitAspect = mobile ? 'aspect-[1/1.28]' : 'aspect-[1/1.24]'
 
-        {/* large rounded portrait — gold outline, floating over the building */}
+  const cardCls = mobile
+    ? 'absolute -right-[18px] top-[50%] z-20 w-[200px] p-4'
+    : 'absolute -right-[60px] top-[57%] z-20 w-[316px] p-7'
+  const polaCls = mobile
+    ? 'absolute top-[4%] -right-[14px] z-30 w-[150px]'
+    : 'absolute top-[2%] -right-[54px] z-30 w-[272px]'
+  const sealCls = mobile
+    ? 'absolute -right-[4px] top-[44%] z-40 -mt-[34px] w-[68px]'
+    : 'absolute -right-[18px] top-[48%] z-40 -mt-[62px] w-[124px]'
+  const clipCls = mobile
+    ? 'absolute -top-[14px] left-[34%] z-50 w-[36px]'
+    : 'absolute -top-[22px] left-[34%] z-50 w-[56px]'
+
+  return (
+    <div className={`relative ${wrap}`}>
+      <div className={`relative ${inner}`}>
+        {/* grounding shadow */}
+        <div className="pointer-events-none absolute inset-x-8 bottom-3 z-0 h-14 rounded-[50%] bg-plum-900/45 blur-2xl" />
+
+        {/* large rounded portrait — gold outline, the focal point */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 28 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1, delay: 0.25, ease }}
-          className="group relative z-10 aspect-[1/1.3] w-full overflow-hidden rounded-[9rem_9rem_2.4rem_2.4rem] p-[3px]"
-          style={{ background: 'linear-gradient(150deg,#E4C77E,#C79A45 45%,#9A7224 80%,#E4C77E)', boxShadow: '0 30px 70px -28px rgba(42,25,35,0.7), 0 10px 24px -12px rgba(42,25,35,0.5)' }}
+          className={`group relative z-10 ${portraitAspect} w-full overflow-hidden rounded-[9rem_9rem_2.6rem_2.6rem] p-[3px]`}
+          style={{ background: 'linear-gradient(150deg,#E4C77E,#C79A45 45%,#9A7224 80%,#E4C77E)', boxShadow: '0 40px 90px -34px rgba(42,25,35,0.75), 0 14px 30px -14px rgba(42,25,35,0.5)' }}
         >
-          <div className="h-full w-full overflow-hidden rounded-[8.8rem_8.8rem_2.2rem_2.2rem]">
+          <div className="h-full w-full overflow-hidden rounded-[8.8rem_8.8rem_2.4rem_2.4rem]">
             <img src={PORTRAIT} alt="A vivid colour transformation by Heaven's Hair Studio"
               className="h-full w-full scale-105 object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110" />
             <div className="absolute inset-0 bg-gradient-to-t from-plum-900/25 via-transparent to-transparent" />
           </div>
         </motion.div>
 
-        {/* service card — frosted glass, lowered */}
+        {/* service card — frosted glass, lowered, supports the portrait */}
         <motion.div
           initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.7, ease }}
-          className="absolute -right-[86px] top-[52%] z-20 w-[256px] rounded-2xl border border-white/60 bg-white/85 p-6 backdrop-blur-xl shadow-[0_2px_8px_-2px_rgba(42,25,35,0.18),0_24px_50px_-18px_rgba(42,25,35,0.4)]"
+          className={`${cardCls} rounded-3xl border border-white/60 bg-white/85 backdrop-blur-xl shadow-[0_2px_8px_-2px_rgba(42,25,35,0.18),0_30px_60px_-22px_rgba(42,25,35,0.42)]`}
         >
           <span className="text-[0.58rem] font-semibold uppercase tracking-luxe text-plum/50">Featured Service</span>
-          <p className="mt-2 font-display text-[1.5rem] font-semibold leading-none text-plum-900">Signature Balayage</p>
-          <p className="mt-2.5 text-[0.78rem] leading-relaxed text-ink/60">Hand-painted, sun-kissed dimension.</p>
-          <div className="my-4 h-px w-full bg-plum/12" />
+          <p className={`mt-2 font-display font-semibold leading-none text-plum-900 ${mobile ? 'text-[1.15rem]' : 'text-[1.7rem]'}`}>Signature Balayage</p>
+          <p className={`leading-relaxed text-ink/60 ${mobile ? 'mt-2 text-[0.72rem]' : 'mt-3 text-[0.85rem]'}`}>Hand-painted, sun-kissed dimension.</p>
+          <div className={`h-px w-full bg-plum/12 ${mobile ? 'my-3' : 'my-5'}`} />
           <div className="flex items-end justify-between">
             <span className="text-[0.58rem] font-semibold uppercase tracking-luxe text-plum/55">Starting at</span>
-            <span className="font-display text-2xl font-semibold leading-none text-plum">$165</span>
+            <span className={`font-display font-semibold leading-none text-plum ${mobile ? 'text-xl' : 'text-3xl'}`}>$165</span>
           </div>
         </motion.div>
 
-        {/* polaroid + paperclip — printed photo pinned above */}
+        {/* polaroid + paperclip — printed photo pinned above, extends past the portrait */}
         <motion.figure
-          initial={{ opacity: 0, y: -20, rotate: -7 }} animate={{ opacity: 1, y: [0, -7, 0], rotate: -7 }}
+          initial={{ opacity: 0, y: -20, rotate: -7 }} animate={{ opacity: 1, y: [0, -8, 0], rotate: -7 }}
           transition={{ opacity: { duration: 0.8, delay: 0.55 }, rotate: { duration: 0.8, delay: 0.55 }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 } }}
-          className="absolute top-[6%] -right-[78px] z-30 w-[212px]"
+          className={polaCls}
         >
-          <div className="rounded-[0.6rem] border border-plum/5 bg-white p-2.5 pb-7 shadow-[0_2px_6px_-1px_rgba(42,25,35,0.18),0_18px_34px_-12px_rgba(42,25,35,0.4),0_40px_64px_-30px_rgba(42,25,35,0.4)]">
-            <div className="overflow-hidden rounded-[0.3rem]">
+          <div className={`rounded-[0.7rem] border border-plum/5 bg-white shadow-[0_2px_6px_-1px_rgba(42,25,35,0.18),0_22px_40px_-14px_rgba(42,25,35,0.42),0_50px_80px_-36px_rgba(42,25,35,0.4)] ${mobile ? 'p-2 pb-5' : 'p-3 pb-9'}`}>
+            <div className="overflow-hidden rounded-[0.35rem]">
               <img src={POLA} onError={onErr(POLA_FB)} alt="Hair inspiration" className="aspect-[4/4.6] w-full object-cover" />
             </div>
           </div>
-          <img src="/hero/paperclip.png" alt="" className="absolute -top-[18px] left-[34%] z-50 w-[44px] -translate-x-1/2 rotate-[8deg] drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)] drop-shadow-[0_6px_8px_rgba(42,25,35,0.5)]" />
+          <img src="/hero/paperclip.png" alt="" className={`${clipCls} -translate-x-1/2 rotate-[8deg] drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)] drop-shadow-[0_6px_8px_rgba(42,25,35,0.5)]`} />
         </motion.figure>
 
-        {/* gold wax seal — holds the polaroid and card together */}
+        {/* gold wax seal — the anchor holding the polaroid and card together */}
         <motion.img
           initial={{ opacity: 0, scale: 0.5, rotate: -24 }} animate={{ opacity: 1, scale: 1, rotate: -10 }}
           transition={{ duration: 0.8, delay: 0.95, ease }}
           src="/hero/wax-seal.png" alt="Heaven's Hair Studio wax seal"
-          className="absolute -right-[58px] top-[49%] z-40 -mt-[44px] w-[90px] drop-shadow-[0_2px_3px_rgba(255,255,255,0.35)] drop-shadow-[0_8px_10px_rgba(42,25,35,0.45)] drop-shadow-[0_18px_24px_rgba(42,25,35,0.4)]"
+          className={`${sealCls} drop-shadow-[0_2px_3px_rgba(255,255,255,0.35)] drop-shadow-[0_10px_12px_rgba(42,25,35,0.45)] drop-shadow-[0_22px_28px_rgba(42,25,35,0.4)]`}
         />
       </div>
     </div>
@@ -214,16 +225,12 @@ function FloatingComposition({ mobile = false }) {
 function Decor() {
   return (
     <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden>
-      {/* large faded HH watermark */}
-      <img src="/brand/logo.png" alt="" className="absolute -right-16 top-1/2 hidden w-[34rem] -translate-y-1/2 opacity-[0.05] mix-blend-screen lg:block" />
-      {/* thin editorial curve */}
       <svg className="absolute left-0 top-0 h-full w-[55%] text-white/[0.06]" viewBox="0 0 600 700" fill="none" preserveAspectRatio="xMidYMid slice">
         <path d="M-40 160 C 180 90 320 250 600 150" stroke="currentColor" strokeWidth="1" />
         <path d="M-40 260 C 220 200 340 340 600 250" stroke="currentColor" strokeWidth="1" strokeOpacity="0.7" />
       </svg>
-      {/* sparkles */}
-      {[['14%', '26%', 13], ['40%', '74%', 11], ['8%', '60%', 10]].map(([l, t, s], i) => (
-        <Sparkles key={i} size={s} className="absolute text-lilac/35 animate-float" style={{ left: l, top: t, animationDelay: `${i}s` }} />
+      {[['14%', '24%', 13], ['44%', '72%', 11], ['8%', '58%', 10]].map(([l, t, s], i) => (
+        <Sparkles key={i} size={s} className="absolute text-lilac/30 animate-float" style={{ left: l, top: t, animationDelay: `${i}s` }} />
       ))}
     </div>
   )
