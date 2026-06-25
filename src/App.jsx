@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Services from './pages/Services'
 import Stylists from './pages/Stylists'
 import Gallery from './pages/Gallery'
+import About from './pages/About'
 import Contact from './pages/Contact'
 import Booking from './pages/Booking'
 import Admin from './pages/Admin'
@@ -87,6 +88,16 @@ export default function App() {
               <PublicLayout>
                 <Page>
                   <Gallery />
+                </Page>
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <PublicLayout>
+                <Page>
+                  <About />
                 </Page>
               </PublicLayout>
             }
