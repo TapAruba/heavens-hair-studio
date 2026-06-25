@@ -43,7 +43,7 @@ export default function Nav() {
               : 'bg-transparent'
         }`}
       >
-        <nav className="mx-auto flex h-[72px] w-full max-w-[1440px] items-center justify-between px-6 sm:px-10 lg:px-[7%]">
+        <nav className="mx-auto flex h-[72px] w-full max-w-[1640px] items-center justify-between px-6 sm:px-10 lg:px-[4%]">
           <Link to="/" className="flex items-center gap-3">
             <img
               src="/brand/logo.png"
