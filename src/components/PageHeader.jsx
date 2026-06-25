@@ -18,7 +18,7 @@ export default function PageHeader({ eyebrow, title, subtitle }) {
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className="display-title mx-auto mt-5 max-w-3xl text-5xl text-plum-900 sm:text-6xl"
+          className="display-title mx-auto mt-5 max-w-3xl text-[2.6rem] leading-[1.05] text-plum-900 sm:text-5xl lg:text-6xl"
         >
           {title}
         </motion.h1>

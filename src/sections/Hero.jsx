@@ -109,7 +109,7 @@ export default function Hero() {
         <div className="relative mx-auto w-full max-w-[880px] lg:mx-0 lg:ml-auto lg:mr-[72px]">
           {/* arch wrapper — large salon photo, left-aligned so the stacked cards hang half-off its right edge.
               Layer order (back→front): arch · service card · polaroid · wax seal · paperclip */}
-          <div className="relative w-[97%]">
+          <div className="relative w-[78%] lg:w-[97%]">
             {/* contact/ambient shadow puddle beneath the arch for grounded depth */}
             <div className="pointer-events-none absolute inset-x-6 bottom-3 z-0 h-12 rounded-[50%] bg-plum-900/20 blur-2xl" />
 
@@ -126,15 +126,15 @@ export default function Hero() {
             {/* service card — back of the floating stack, lowered for breathing room */}
             <motion.div
               initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.7, ease }}
-              className="absolute -right-[92px] top-[46%] z-20 w-[262px] rounded-2xl border border-white/70 bg-white/95 p-6 backdrop-blur shadow-[0_2px_6px_-2px_rgba(74,44,61,0.08),0_20px_44px_-16px_rgba(74,44,61,0.22)]"
+              className="absolute -right-[20px] top-[48%] z-20 w-[188px] rounded-2xl border border-white/70 bg-white/95 p-4 backdrop-blur shadow-[0_2px_6px_-2px_rgba(74,44,61,0.08),0_20px_44px_-16px_rgba(74,44,61,0.22)] lg:-right-[92px] lg:top-[46%] lg:w-[262px] lg:p-6"
             >
               <span className="text-[0.58rem] font-semibold uppercase tracking-luxe text-plum/45">Featured Service</span>
-              <p className="mt-2 font-display text-[1.5rem] font-semibold leading-none text-plum-900">Signature Balayage</p>
-              <p className="mt-2.5 text-[0.78rem] leading-relaxed text-ink/55">Hand-painted, sun-kissed dimension.</p>
-              <div className="my-4 h-px w-full bg-plum/10" />
+              <p className="mt-2 font-display text-[1.15rem] font-semibold leading-[1.05] text-plum-900 lg:text-[1.5rem]">Signature Balayage</p>
+              <p className="mt-2 text-[0.72rem] leading-relaxed text-ink/55 lg:mt-2.5 lg:text-[0.78rem]">Hand-painted, sun-kissed dimension.</p>
+              <div className="my-3 h-px w-full bg-plum/10 lg:my-4" />
               <div className="flex items-end justify-between">
                 <span className="text-[0.58rem] font-semibold uppercase tracking-luxe text-plum/50">Starting at</span>
-                <span className="font-display text-2xl font-semibold leading-none text-plum">$165</span>
+                <span className="font-display text-xl font-semibold leading-none text-plum lg:text-2xl">$165</span>
               </div>
             </motion.div>
 
@@ -142,15 +142,15 @@ export default function Hero() {
             <motion.figure
               initial={{ opacity: 0, y: -20, rotate: -7 }} animate={{ opacity: 1, y: [0, -7, 0], rotate: -7 }}
               transition={{ opacity: { duration: 0.8, delay: 0.6 }, rotate: { duration: 0.8, delay: 0.6 }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 } }}
-              className="absolute top-[5%] -right-[84px] z-30 w-[220px]"
+              className="absolute top-[5%] -right-[16px] z-30 w-[136px] lg:-right-[84px] lg:w-[220px]"
             >
-              <div className="rounded-[0.6rem] border border-plum/5 bg-white p-2.5 pb-7 shadow-[0_2px_5px_-1px_rgba(74,44,61,0.10),0_14px_28px_-10px_rgba(74,44,61,0.24),0_34px_56px_-26px_rgba(74,44,61,0.26)]">
+              <div className="rounded-[0.6rem] border border-plum/5 bg-white p-2 pb-5 shadow-[0_2px_5px_-1px_rgba(74,44,61,0.10),0_14px_28px_-10px_rgba(74,44,61,0.24),0_34px_56px_-26px_rgba(74,44,61,0.26)] lg:p-2.5 lg:pb-7">
                 <div className="overflow-hidden rounded-[0.3rem]">
                   <img src={POLA} onError={onErr(POLA_FB)} alt="Hair inspiration" className="aspect-[4/4.6] w-full object-cover" />
                 </div>
               </div>
               {/* gold paperclip — straddles the top edge, appears to hold the photo */}
-              <img src="/hero/paperclip.png" alt="" className="absolute -top-[18px] left-[34%] z-50 w-[44px] -translate-x-1/2 rotate-[8deg] drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)] drop-shadow-[0_5px_7px_rgba(74,44,61,0.38)]" />
+              <img src="/hero/paperclip.png" alt="" className="absolute -top-[12px] left-[34%] z-50 w-[32px] -translate-x-1/2 rotate-[8deg] drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)] drop-shadow-[0_5px_7px_rgba(74,44,61,0.38)] lg:-top-[18px] lg:w-[44px]" />
             </motion.figure>
 
             {/* gold wax seal — anchors the seam, overlapping the polaroid above and the service card below */}
@@ -158,7 +158,7 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.5, rotate: -24 }} animate={{ opacity: 1, scale: 1, rotate: -10 }}
               transition={{ duration: 0.8, delay: 0.95, ease }}
               src="/hero/wax-seal.png" alt="Heaven's Hair Studio wax seal"
-              className="absolute -right-[66px] top-[44%] z-40 -mt-[46px] w-[94px] drop-shadow-[0_2px_3px_rgba(255,255,255,0.35)] drop-shadow-[0_6px_8px_rgba(74,44,61,0.30)] drop-shadow-[0_16px_22px_rgba(74,44,61,0.30)]"
+              className="absolute -right-[10px] top-[44%] z-40 -mt-[30px] w-[60px] drop-shadow-[0_2px_3px_rgba(255,255,255,0.35)] drop-shadow-[0_6px_8px_rgba(74,44,61,0.30)] drop-shadow-[0_16px_22px_rgba(74,44,61,0.30)] lg:-right-[66px] lg:-mt-[46px] lg:w-[94px]"
             />
           </div>
         </div>

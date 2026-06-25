@@ -33,7 +33,7 @@ function Stepper({ step }) {
           <div key={label} className="flex flex-1 items-center last:flex-none">
             <div className="flex flex-col items-center">
               <div
-                className={`grid h-9 w-9 place-items-center rounded-full text-xs font-semibold transition-all duration-300 ${
+                className={`grid h-8 w-8 shrink-0 place-items-center rounded-full text-xs font-semibold transition-all duration-300 sm:h-9 sm:w-9 ${
                   done
                     ? 'bg-plum text-porcelain'
                     : active
@@ -52,7 +52,7 @@ function Stepper({ step }) {
               </span>
             </div>
             {i < 5 && (
-              <div className="mx-2 h-px flex-1 bg-plum/10">
+              <div className="mx-1 h-px flex-1 bg-plum/10 sm:mx-2">
                 <div
                   className="h-px bg-plum transition-all duration-500"
                   style={{ width: done ? '100%' : '0%' }}
@@ -210,7 +210,7 @@ export default function Booking() {
             <span className="eyebrow justify-center">
               <Sparkles size={13} className="text-lilac" /> Book your appointment
             </span>
-            <h1 className="display-title mt-3 text-4xl text-plum-900 sm:text-5xl">
+            <h1 className="display-title mt-3 text-[2rem] text-plum-900 sm:text-4xl lg:text-5xl">
               {STEP_TITLES[step]}
             </h1>
           </div>

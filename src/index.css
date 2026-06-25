@@ -23,6 +23,8 @@
   body {
     @apply bg-porcelain text-ink font-sans;
     background-color: #faf6f8;
+    /* guard against any element forcing horizontal scroll on small screens */
+    overflow-x: hidden;
   }
 
   ::selection {
