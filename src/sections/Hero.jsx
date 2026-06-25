@@ -10,13 +10,11 @@ const POLA = '/photos/hair-caramel.jpg'
 const POLA_FB = 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=600&q=80'
 const onErr = (fb) => (e) => { if (e.currentTarget.src !== fb) e.currentTarget.src = fb }
 
-const softShadow = '0 1px 24px rgba(42,25,35,0.35)'
-
 export default function Hero() {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '16%'])
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1.06, 1.14])
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '14%'])
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.07])
   const compY = useTransform(scrollYProgress, [0, 1], [0, -54])
 
   return (
@@ -40,32 +38,18 @@ export default function Hero() {
       <Decor />
 
       {/* ── content ── */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1640px] items-start px-6 pt-[104px] pb-16 sm:px-10 lg:items-center lg:px-[4%] lg:pt-[72px] lg:pb-20">
-        <div className="grid w-full items-center gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1640px] items-center px-6 py-24 sm:px-10 lg:px-[4%]">
+        <div className="grid w-full items-center gap-8 lg:grid-cols-[0.86fr_1.14fr]">
 
-          {/* ───────── LEFT: brand lockup (minimal — monogram + wordmark) ───────── */}
-          <div className="relative flex flex-col items-center text-center text-porcelain lg:items-start lg:text-left">
+          {/* ───────── LEFT: official brand lockup (monogram + wordmark) ───────── */}
+          <div className="relative flex flex-col items-center text-center text-porcelain">
+            <h1 className="sr-only">Heaven’s Hair Studio</h1>
             <motion.img
-              src="/brand/monogram-white.png"
-              alt="Heaven's Hair Studio monogram"
+              src="/brand/lockup-white.png"
+              alt="Heaven's Hair Studio"
               initial={{ opacity: 0, y: 22, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 1, ease }}
-              className="w-[148px] drop-shadow-[0_8px_30px_rgba(42,25,35,0.45)] sm:w-[180px] lg:w-[230px]"
+              className="w-[270px] drop-shadow-[0_12px_40px_rgba(42,25,35,0.55)] sm:w-[330px] lg:w-[400px]"
             />
-            <motion.div
-              initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.2, ease }}
-              className="-mt-2"
-              style={{ textShadow: softShadow }}
-            >
-              <h1 className="font-display text-[2.6rem] font-medium uppercase leading-[1.04] tracking-[0.06em] text-porcelain sm:text-5xl lg:text-[3.6rem]">
-                Heaven’s
-                <span className="block">Hair Studio</span>
-              </h1>
-            </motion.div>
-
-            {/* mobile floating composition — stacks directly below the lockup */}
-            <div className="mt-14 w-full lg:hidden">
-              <FloatingComposition mobile />
-            </div>
           </div>
 
           {/* ───────── RIGHT: floating editorial composition ───────── */}
@@ -82,25 +66,24 @@ export default function Hero() {
 function FloatingComposition({ mobile = false }) {
   // Desktop renders ~40% larger than mobile; each instance only shows at its breakpoint,
   // so sizes can switch cleanly via the `mobile` flag (no clipping risk on small screens).
-  const wrap = mobile ? 'mx-auto w-full max-w-[440px]' : 'ml-auto w-full max-w-[860px]'
-  const innerW = mobile ? 'w-[72%]' : 'w-[64%]'
-  const portraitAspect = mobile ? 'aspect-[1/1.28]' : 'aspect-[1/1.22]'
+  // Compact cluster anchored to the right third of the screen so the salon entrance
+  // (centre of the background) stays clearly visible. Portrait is the largest element.
+  const wrap = mobile ? 'mx-auto w-full max-w-[440px]' : 'ml-auto w-full max-w-[520px]'
+  const innerW = mobile ? 'w-[72%]' : 'w-[60%]'
+  const portraitAspect = mobile ? 'aspect-[1/1.28]' : 'aspect-[1/1.46]'
 
-  // Portrait is the focal point on the left of the wrapper; the polaroid + card stack
-  // to its right, anchored to the FULL wrapper so they use the open space (not the
-  // narrow portrait box) while still overlapping the portrait's right edge.
   const cardCls = mobile
     ? 'absolute right-0 top-[53%] z-20 w-[60%] p-4'
-    : 'absolute right-0 top-[57%] z-20 w-[46%] p-6'
+    : 'absolute right-0 top-[55%] z-20 w-[50%] p-5'
   const polaCls = mobile
     ? 'absolute top-[2%] right-[3%] z-30 w-[50%]'
-    : 'absolute top-[1%] right-[4%] z-30 w-[39%]'
+    : 'absolute top-[1%] right-[2%] z-30 w-[44%]'
   const sealCls = mobile
     ? 'absolute right-[18%] top-[46%] z-40 -mt-[34px] w-[64px]'
-    : 'absolute right-[19%] top-[46%] z-40 -mt-[66px] w-[132px]'
+    : 'absolute right-[22%] top-[44%] z-40 -mt-[48px] w-[104px]'
   const clipCls = mobile
     ? 'absolute -top-[14px] left-[36%] z-50 w-[34px]'
-    : 'absolute -top-[24px] left-[36%] z-50 w-[56px]'
+    : 'absolute -top-[20px] left-[36%] z-50 w-[48px]'
 
   return (
     <div className={`relative ${wrap}`}>
@@ -127,13 +110,13 @@ function FloatingComposition({ mobile = false }) {
         initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.7, ease }}
         className={`${cardCls} rounded-3xl border border-white/60 bg-white/85 backdrop-blur-xl shadow-[0_2px_8px_-2px_rgba(42,25,35,0.18),0_30px_60px_-22px_rgba(42,25,35,0.42)]`}
       >
-        <span className="text-[0.58rem] font-semibold uppercase tracking-luxe text-plum/50">Featured Service</span>
-        <p className={`mt-2 font-display font-semibold leading-tight text-plum-900 ${mobile ? 'text-[1.15rem]' : 'text-[1.7rem]'}`}>Signature Balayage</p>
-        <p className={`leading-relaxed text-ink/60 ${mobile ? 'mt-2 text-[0.72rem]' : 'mt-3 text-[0.85rem]'}`}>Hand-painted, sun-kissed dimension.</p>
-        <div className={`h-px w-full bg-plum/12 ${mobile ? 'my-3' : 'my-5'}`} />
+        <span className="text-[0.56rem] font-semibold uppercase tracking-luxe text-plum/50">Featured Service</span>
+        <p className={`mt-1.5 font-display font-semibold leading-tight text-plum-900 ${mobile ? 'text-[1.15rem]' : 'text-[1.45rem]'}`}>Signature Balayage</p>
+        <p className={`leading-relaxed text-ink/60 ${mobile ? 'mt-2 text-[0.72rem]' : 'mt-2 text-[0.78rem]'}`}>Hand-painted, sun-kissed dimension.</p>
+        <div className={`h-px w-full bg-plum/12 ${mobile ? 'my-3' : 'my-4'}`} />
         <div className="flex items-end justify-between">
-          <span className="text-[0.58rem] font-semibold uppercase tracking-luxe text-plum/55">Starting at</span>
-          <span className={`font-display font-semibold leading-none text-plum ${mobile ? 'text-xl' : 'text-3xl'}`}>$165</span>
+          <span className="text-[0.56rem] font-semibold uppercase tracking-luxe text-plum/55">Starting at</span>
+          <span className={`font-display font-semibold leading-none text-plum ${mobile ? 'text-xl' : 'text-2xl'}`}>$165</span>
         </div>
       </motion.div>
 
