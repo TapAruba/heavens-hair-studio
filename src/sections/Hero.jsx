@@ -80,7 +80,7 @@ function FloatingComposition({ mobile = false }) {
     : 'absolute top-[1%] right-[2%] z-30 w-[44%]'
   const sealCls = mobile
     ? 'absolute right-[18%] top-[46%] z-40 -mt-[34px] w-[64px]'
-    : 'absolute right-[22%] top-[44%] z-40 -mt-[48px] w-[104px]'
+    : 'absolute right-[22%] top-[50%] z-40 -mt-[48px] w-[104px]'
   const clipCls = mobile
     ? 'absolute -top-[14px] left-[36%] z-50 w-[34px]'
     : 'absolute -top-[20px] left-[36%] z-50 w-[48px]'

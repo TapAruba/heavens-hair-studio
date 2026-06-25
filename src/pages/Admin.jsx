@@ -5,7 +5,8 @@ import {
   LayoutDashboard, CalendarDays, Scissors, Users, CalendarOff, Settings as SettingsIcon,
   Search, Check, X, Clock, Phone, Mail, MessageSquare, TrendingUp, CalendarClock,
   CircleDollarSign, CheckCircle2, ChevronLeft, ChevronRight, Plus, Trash2, Pencil,
-  LogOut, Star, ArrowUpRight, Menu,
+  LogOut, Star, ArrowUpRight, Menu, Lock, ArrowRight, ShieldCheck, Zap, Layers,
+  Activity, RefreshCw, MessageCircle, Megaphone, BadgeCheck, Globe,
 } from 'lucide-react'
 import Calendar from '../components/Calendar'
 import {
@@ -55,50 +56,142 @@ export default function Admin() {
 
 // --- Login ---------------------------------------------------------------
 function Login({ onAuth }) {
+  const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
   const [err, setErr] = useState(false)
   const submit = (e) => {
     e.preventDefault()
-    // Demo gate — any non-empty password works; replace with real auth.
+    // Demo gate — any non-empty password works; replace with real Tap Aruba auth.
     if (pw.trim()) {
       sessionStorage.setItem('hhs.admin', '1')
       onAuth()
     } else setErr(true)
   }
+
   return (
-    <div className="grid min-h-screen place-items-center bg-blush-grad px-6">
-      <div className="pointer-events-none fixed inset-0 tx-dotgrid opacity-40" />
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease }}
-        className="relative w-full max-w-sm rounded-4xl border border-plum/10 bg-white p-8 shadow-card"
-      >
-        <img src="/brand/logo.png" alt="" className="mx-auto h-16 w-16 rounded-2xl object-cover shadow-soft" />
-        <h1 className="mt-5 text-center font-display text-3xl font-semibold text-plum-900">
-          Studio Login
-        </h1>
-        <p className="mt-1 text-center text-sm text-ink/55">Heaven’s Hair Studio · Management</p>
-        <form onSubmit={submit} className="mt-7 space-y-4">
-          <input
-            type="password"
-            value={pw}
-            onChange={(e) => { setPw(e.target.value); setErr(false) }}
-            placeholder="Password"
-            className="input text-center"
-            autoFocus
-          />
-          {err && <p className="text-center text-xs text-red-500">Please enter your password.</p>}
-          <button className="btn-primary w-full">Enter Dashboard</button>
-        </form>
-        <p className="mt-5 text-center text-xs text-ink/40">
-          Demo: enter any password to continue
-        </p>
-        <Link to="/" className="mt-4 block text-center text-xs text-plum/60 hover:text-plum">
-          ← Back to website
-        </Link>
-      </motion.div>
+    <div className="grid min-h-screen lg:grid-cols-[1.05fr_1fr]">
+      {/* ── brand panel ── */}
+      <div className="relative hidden flex-col justify-between overflow-hidden bg-plum-grad p-12 text-porcelain lg:flex">
+        <div className="pointer-events-none absolute inset-0 tx-dotgrid opacity-20" />
+        <div className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-lilac/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-lilac/15 blur-3xl" />
+
+        <div className="relative flex items-center gap-2 text-porcelain/70">
+          <TapMark className="h-5 w-5" />
+          <span className="text-xs font-semibold uppercase tracking-luxe">Powered by Tap Aruba</span>
+        </div>
+
+        <div className="relative">
+          <img src="/brand/lockup-white.png" alt="Heaven's Hair Studio" className="w-44 opacity-95" />
+          <h2 className="mt-8 max-w-sm font-display text-4xl font-medium leading-tight">
+            Your studio, beautifully managed.
+          </h2>
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-porcelain/70">
+            Bookings, calendar, clients and analytics — all in one calm, considered dashboard,
+            connected to the Tap Aruba platform.
+          </p>
+          <div className="mt-8 space-y-3">
+            {['Real-time appointments & scheduling', 'Client history & insights', 'Synced with Tap Aruba analytics'].map((t) => (
+              <div key={t} className="flex items-center gap-3 text-sm text-porcelain/80">
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white/12 text-lilac">
+                  <Check size={13} />
+                </span>
+                {t}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <p className="relative text-xs text-porcelain/45">Crafted with intention, finished with grace.</p>
+      </div>
+
+      {/* ── form panel ── */}
+      <div className="relative flex items-center justify-center bg-porcelain px-6 py-12">
+        <div className="pointer-events-none absolute inset-0 tx-dotgrid opacity-30 lg:hidden" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+          className="relative w-full max-w-[380px]"
+        >
+          <img src="/brand/logo.png" alt="" className="h-14 w-14 rounded-2xl object-cover shadow-soft" />
+          <h1 className="mt-6 font-display text-3xl font-semibold text-plum-900">Studio Login</h1>
+          <p className="mt-1.5 text-sm text-ink/55">
+            Welcome back. Sign in to manage Heaven’s Hair Studio.
+          </p>
+
+          <form onSubmit={submit} className="mt-8 space-y-4">
+            <label className="block">
+              <span className="mb-1.5 block text-xs font-semibold text-plum/70">Email address</span>
+              <div className="relative">
+                <Mail size={16} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-plum/35" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@heavenshair.com"
+                  className="input pl-11"
+                />
+              </div>
+            </label>
+
+            <label className="block">
+              <span className="mb-1.5 block text-xs font-semibold text-plum/70">Password</span>
+              <div className="relative">
+                <Lock size={16} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-plum/35" />
+                <input
+                  type="password"
+                  value={pw}
+                  onChange={(e) => { setPw(e.target.value); setErr(false) }}
+                  placeholder="••••••••"
+                  className="input pl-11"
+                  autoFocus
+                />
+              </div>
+            </label>
+
+            {err && <p className="pl-1 text-xs text-red-500">Please enter your password.</p>}
+
+            <div className="flex items-center justify-between pt-1 text-xs">
+              <label className="flex items-center gap-2 text-ink/60">
+                <input type="checkbox" className="h-4 w-4 rounded border-plum/30 text-plum focus:ring-lilac" defaultChecked />
+                Remember me
+              </label>
+              <a href="#" className="font-medium text-plum/70 hover:text-plum">Forgot password?</a>
+            </div>
+
+            <button className="btn-primary mt-2 w-full">
+              Enter Dashboard
+              <ArrowRight size={16} />
+            </button>
+          </form>
+
+          <div className="mt-6 flex items-center justify-center gap-2 rounded-2xl border border-plum/10 bg-white px-4 py-3 text-center">
+            <TapMark className="h-4 w-4 shrink-0" tone="plum" />
+            <span className="text-xs text-ink/55">
+              Secured &amp; powered by <span className="font-semibold text-plum">Tap Aruba</span>
+            </span>
+          </div>
+
+          <p className="mt-4 text-center text-xs text-ink/40">Demo: enter any password to continue</p>
+          <Link to="/" className="mt-3 block text-center text-xs text-plum/60 hover:text-plum">
+            ← Back to website
+          </Link>
+        </motion.div>
+      </div>
     </div>
+  )
+}
+
+// Small Tap Aruba mark (concentric "tap" ripple in Tap-blue).
+function TapMark({ className = '', tone = 'light' }) {
+  const c = tone === 'plum' ? '#1DB6C7' : '#7FE3EE'
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
+      <circle cx="12" cy="12" r="3" fill={c} />
+      <circle cx="12" cy="12" r="7" stroke={c} strokeWidth="1.6" opacity="0.7" />
+      <circle cx="12" cy="12" r="10.5" stroke={c} strokeWidth="1.3" opacity="0.35" />
+    </svg>
   )
 }
 
@@ -110,6 +203,7 @@ const NAV = [
   { id: 'services', label: 'Services', icon: Scissors },
   { id: 'stylists', label: 'Stylists', icon: Users },
   { id: 'availability', label: 'Availability', icon: CalendarOff },
+  { id: 'tapAruba', label: 'Tap Aruba', icon: Layers, badge: true },
   { id: 'settings', label: 'Settings', icon: SettingsIcon },
 ]
 
@@ -145,11 +239,24 @@ function Dashboard({ onLogout }) {
               }`}
             >
               <n.icon size={18} />
-              {n.label}
+              <span className="flex-1 text-left">{n.label}</span>
+              {n.badge && <TapMark className="h-4 w-4 shrink-0" tone={view === n.id ? 'light' : 'plum'} />}
             </button>
           ))}
         </nav>
         <div className="absolute inset-x-0 bottom-0 border-t border-plum/8 p-4">
+          <button
+            onClick={() => setView('tapAruba')}
+            className="mb-2 flex w-full items-center gap-2.5 rounded-2xl border border-plum/10 bg-blush/30 px-3.5 py-2.5 text-left transition hover:bg-blush/50"
+          >
+            <TapMark className="h-5 w-5 shrink-0" tone="plum" />
+            <span className="min-w-0 flex-1">
+              <span className="block text-xs font-semibold text-plum-900">Tap Aruba</span>
+              <span className="flex items-center gap-1 text-[0.6rem] text-emerald-600">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Connected
+              </span>
+            </span>
+          </button>
           <button
             onClick={onLogout}
             className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-ink/55 transition hover:bg-red-50 hover:text-red-500"
@@ -184,9 +291,19 @@ function Dashboard({ onLogout }) {
               </p>
             </div>
           </div>
-          <Link to="/" target="_blank" className="btn-secondary hidden sm:inline-flex">
-            View site <ArrowUpRight size={15} />
-          </Link>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setView('tapAruba')}
+              className="hidden items-center gap-2 rounded-full border border-plum/12 bg-white px-3.5 py-2 text-xs font-medium text-plum/80 transition hover:border-plum/30 hover:shadow-soft md:inline-flex"
+            >
+              <TapMark className="h-4 w-4" tone="plum" />
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              Tap Aruba connected
+            </button>
+            <Link to="/" target="_blank" className="btn-secondary hidden sm:inline-flex">
+              View site <ArrowUpRight size={15} />
+            </Link>
+          </div>
         </header>
 
         <main className="p-6 lg:p-8">
@@ -204,6 +321,7 @@ function Dashboard({ onLogout }) {
               {view === 'services' && <ServicesAdmin />}
               {view === 'stylists' && <StylistsAdmin />}
               {view === 'availability' && <Availability />}
+              {view === 'tapAruba' && <TapArubaPanel />}
               {view === 'settings' && <SettingsView />}
             </motion.div>
           </AnimatePresence>
@@ -767,6 +885,161 @@ function Availability() {
             </div>
           ))}
         </div>
+      </div>
+    </div>
+  )
+}
+
+// --- Tap Aruba platform connection --------------------------------------
+function TapArubaPanel() {
+  const bookings = getBookings()
+  const active = bookings.filter((b) => b.status !== 'cancelled')
+  const revenue = active.reduce((s, b) => s + (getService(b.service)?.price || 0), 0)
+
+  const modules = [
+    { icon: CalendarClock, name: 'Booking Engine', desc: 'Online appointments, calendar & reminders', status: 'active', meta: `${active.length} live bookings` },
+    { icon: Star, name: 'Reviews Engine', desc: 'Collect & showcase client reviews', status: 'active', meta: '4.9 ★ · 128 reviews' },
+    { icon: Globe, name: 'Website', desc: 'This luxury site, hosted & managed', status: 'active', meta: 'heavenshair.aw' },
+    { icon: Megaphone, name: 'Lead Capture', desc: 'Quote & contact forms → your inbox', status: 'active', meta: '23 leads this month' },
+    { icon: MessageCircle, name: 'Loyalty & Messaging', desc: 'WhatsApp campaigns & rewards', status: 'available', meta: 'Available on Pro+' },
+    { icon: Zap, name: 'NFC Check-in', desc: 'Tap-to-check-in & in-salon taps', status: 'available', meta: 'Add hardware' },
+  ]
+
+  const stats = [
+    { label: 'Bookings via Tap', value: active.length, icon: CalendarClock, sub: 'this period' },
+    { label: 'Revenue tracked', value: formatPrice(revenue), icon: CircleDollarSign, sub: 'projected' },
+    { label: 'Website visits', value: '3.2k', icon: Activity, sub: '+18% vs last mo' },
+    { label: 'Avg. rating', value: '4.9', icon: Star, sub: '128 reviews' },
+  ]
+
+  return (
+    <div className="space-y-6">
+      {/* connection banner */}
+      <div className="relative overflow-hidden rounded-3xl bg-[linear-gradient(135deg,#072A4A,#0B3A63_55%,#0E4A7A)] p-7 text-white shadow-card">
+        <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-[#1DB6C7]/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-12 right-1/3 h-40 w-40 rounded-full bg-[#1DB6C7]/10 blur-3xl" />
+        <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex items-start gap-4">
+            <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/10 ring-1 ring-white/15">
+              <TapMark className="h-8 w-8" />
+            </span>
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="text-2xl font-semibold tracking-tight">Tap Aruba</h2>
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-400/15 px-2.5 py-0.5 text-[0.65rem] font-semibold text-emerald-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Connected
+                </span>
+              </div>
+              <p className="mt-1 max-w-md text-sm text-white/65">
+                Heaven’s Hair Studio is part of the Tap Aruba platform — your website, bookings,
+                reviews and analytics, managed in one place.
+              </p>
+              <p className="mt-2 flex items-center gap-1.5 text-xs text-white/45">
+                <RefreshCw size={12} /> Last synced 2 minutes ago
+              </p>
+            </div>
+          </div>
+          <div className="flex shrink-0 items-center gap-3">
+            <span className="rounded-2xl bg-white/10 px-4 py-2 text-center ring-1 ring-white/15">
+              <span className="block text-[0.6rem] uppercase tracking-luxe text-white/55">Plan</span>
+              <span className="text-sm font-semibold text-white">Tap Pro</span>
+            </span>
+            <a
+              href="https://tap-aruba.vercel.app"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-[#1DB6C7] px-5 py-3 text-sm font-semibold text-[#062B5B] transition hover:bg-[#3CC6D6]"
+            >
+              Open Tap HQ <ArrowUpRight size={15} />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* platform analytics */}
+      <div>
+        <div className="mb-3 flex items-center gap-2">
+          <Activity size={16} className="text-plum" />
+          <h3 className="font-display text-xl font-semibold text-plum-900">Platform analytics</h3>
+          <span className="rounded-full bg-blush/50 px-2 py-0.5 text-[0.6rem] font-semibold text-plum/70">Powered by Tap Aruba</span>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.label} className="rounded-3xl border border-plum/10 bg-white p-5 shadow-soft">
+              <div className="flex items-center justify-between">
+                <span className="grid h-10 w-10 place-items-center rounded-2xl bg-blush/50 text-plum">
+                  <s.icon size={18} />
+                </span>
+                <TrendingUp size={15} className="text-emerald-400" />
+              </div>
+              <p className="mt-3 font-display text-2xl font-semibold text-plum-900">{s.value}</p>
+              <p className="text-xs text-ink/55">{s.label}</p>
+              <p className="mt-0.5 text-[0.65rem] text-plum/45">{s.sub}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* modules / engines */}
+      <div>
+        <div className="mb-3 flex items-center gap-2">
+          <Layers size={16} className="text-plum" />
+          <h3 className="font-display text-xl font-semibold text-plum-900">Your Tap Aruba modules</h3>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {modules.map((m) => {
+            const on = m.status === 'active'
+            return (
+              <div
+                key={m.name}
+                className={`rounded-3xl border p-5 shadow-soft transition ${
+                  on ? 'border-plum/10 bg-white' : 'border-dashed border-plum/15 bg-white/50'
+                }`}
+              >
+                <div className="flex items-start justify-between">
+                  <span className={`grid h-11 w-11 place-items-center rounded-2xl ${on ? 'bg-plum-grad text-porcelain' : 'bg-blush/40 text-plum/50'}`}>
+                    <m.icon size={19} />
+                  </span>
+                  {on ? (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-[0.6rem] font-semibold text-emerald-700">
+                      <BadgeCheck size={12} /> Active
+                    </span>
+                  ) : (
+                    <span className="rounded-full bg-plum/8 px-2.5 py-1 text-[0.6rem] font-semibold text-plum/50">Available</span>
+                  )}
+                </div>
+                <h4 className="mt-4 font-display text-lg font-semibold text-plum-900">{m.name}</h4>
+                <p className="mt-1 text-xs leading-relaxed text-ink/55">{m.desc}</p>
+                <p className={`mt-3 border-t pt-3 text-xs font-medium ${on ? 'border-plum/8 text-plum/70' : 'border-plum/8 text-plum/40'}`}>
+                  {m.meta}
+                </p>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* managed-by-HQ note */}
+      <div className="flex flex-col gap-4 rounded-3xl border border-plum/10 bg-white p-6 shadow-soft sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-start gap-3">
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-blush/50 text-plum">
+            <ShieldCheck size={18} />
+          </span>
+          <div>
+            <p className="font-medium text-plum-900">Configured & supported by Tap Aruba HQ</p>
+            <p className="mt-0.5 text-sm text-ink/55">
+              Need a new module, a design change or help? Your Tap Aruba team handles it — no tech headaches.
+            </p>
+          </div>
+        </div>
+        <a
+          href="https://wa.me/2975616058"
+          target="_blank"
+          rel="noreferrer"
+          className="btn-secondary shrink-0"
+        >
+          <MessageCircle size={15} /> Contact HQ
+        </a>
       </div>
     </div>
   )
