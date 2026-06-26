@@ -1,6 +1,6 @@
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { Sparkles } from 'lucide-react'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { Sparkles, ChevronDown } from 'lucide-react'
 
 const ease = [0.16, 1, 0.3, 1]
 
@@ -10,12 +10,20 @@ const POLA = '/photos/hair-caramel.jpg'
 const POLA_FB = 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=600&q=80'
 const onErr = (fb) => (e) => { if (e.currentTarget.src !== fb) e.currentTarget.src = fb }
 
+const spring = { stiffness: 90, damping: 28, restDelta: 0.0005 }
+
 export default function Hero() {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '14%'])
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.07])
-  const compY = useTransform(scrollYProgress, [0, 1], [0, -54])
+
+  // Layered parallax — each plane drifts at its own speed for depth on scroll.
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.1])
+  const logoY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -150]), spring)
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0])
+  const compY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -90]), spring)
+  const compOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0.1])
+  const cueOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0])
 
   return (
     <section ref={ref} className="relative min-h-[100svh] w-full overflow-hidden bg-plum-900">
@@ -42,7 +50,10 @@ export default function Hero() {
         <div className="grid w-full items-center gap-8 lg:grid-cols-[0.86fr_1.14fr]">
 
           {/* ───────── LEFT: official brand lockup (monogram + wordmark) ───────── */}
-          <div className="relative flex flex-col items-center text-center text-porcelain">
+          <motion.div
+            style={{ y: logoY, opacity: logoOpacity }}
+            className="relative flex flex-col items-center text-center text-porcelain will-change-transform"
+          >
             <h1 className="sr-only">Heaven’s Hair Studio</h1>
             <motion.img
               src="/brand/lockup-white.png"
@@ -50,14 +61,29 @@ export default function Hero() {
               initial={{ opacity: 0, y: 22, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 1, ease }}
               className="w-[270px] drop-shadow-[0_12px_40px_rgba(42,25,35,0.55)] sm:w-[330px] lg:w-[400px]"
             />
-          </div>
+          </motion.div>
 
           {/* ───────── RIGHT: floating editorial composition ───────── */}
-          <motion.div style={{ y: compY }} className="relative hidden lg:block">
+          <motion.div style={{ y: compY, opacity: compOpacity }} className="relative hidden lg:block will-change-transform">
             <FloatingComposition />
           </motion.div>
         </div>
       </div>
+
+      {/* ── scroll cue ── */}
+      <motion.div
+        style={{ opacity: cueOpacity }}
+        className="pointer-events-none absolute inset-x-0 bottom-7 z-10 flex flex-col items-center gap-2 text-porcelain/70"
+      >
+        <span className="text-[0.6rem] font-semibold uppercase tracking-luxe">Scroll</span>
+        <motion.span
+          animate={{ y: [0, 7, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          className="grid h-8 w-8 place-items-center rounded-full border border-white/25 bg-white/5 backdrop-blur"
+        >
+          <ChevronDown size={15} />
+        </motion.span>
+      </motion.div>
     </section>
   )
 }
